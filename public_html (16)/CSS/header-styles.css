@@ -1,0 +1,157 @@
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0c0a18;
+            overflow-x: hidden;
+        }
+        
+        .background-wrapper {
+            position: relative;
+            width: 100%;
+            z-index: 0;
+        }
+        
+        /* Animated Aurora Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+            background: 
+                radial-gradient(circle at 25% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 35%),
+                radial-gradient(circle at 75% 70%, rgba(139, 92, 246, 0.15) 0%, transparent 35%);
+            animation: background-glow 25s ease-in-out infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes background-glow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Subtle Transparent Header */
+        .glass-header {
+            background: rgba(12, 10, 24, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Animated Logo - Subtle gradient shift */
+        .logo-code {
+            background: linear-gradient(120deg, #ffffff 0%, #e0e7ff 50%, #ffffff 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: logo-shimmer 4s ease-in-out infinite;
+        }
+
+        .logo-mistry {
+            background: linear-gradient(120deg, #3b82f6 0%, #8b5cf6 50%, #3b82f6 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: logo-shimmer 4s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes logo-shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Subtle glow on logo hover */
+        .logo-container:hover .logo-code {
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+            animation: logo-shimmer 2s ease-in-out infinite;
+        }
+
+        .logo-container:hover .logo-mistry {
+            filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.5));
+            animation: logo-shimmer 2s ease-in-out infinite;
+        }
+
+        /* Smooth hover effects */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Mobile menu item animation */
+        .mobile-nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-nav-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-nav-link:hover::before,
+        .mobile-nav-link.active::before {
+            transform: translateX(0);
+        }
+
+        /* CTA Button Enhancement */
+        .cta-button {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Hamburger Animation */
+        .hamburger-line {
+            transition: all 0.3s ease;
+        }
+
+        #mobile-menu-button:hover .hamburger-line {
+            stroke: #3b82f6;
+        }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            background: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(20px);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #menu-overlay {
+            transition: opacity 0.3s ease;
+        }

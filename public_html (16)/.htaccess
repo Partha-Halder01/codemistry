@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Redirect Trailing Slashes If Not A Folder...
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} (.+)/$
+RewriteRule ^ %1 [L,R=301]
+
+# Handle requests for files without .php extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]

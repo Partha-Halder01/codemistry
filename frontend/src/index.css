@@ -1,0 +1,359 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer base {
+  body {
+    @apply font-sans antialiased text-charcoal-800 bg-white;
+  }
+
+  ::selection {
+    @apply bg-brand-500 text-white;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display tracking-tight text-charcoal-950;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-7 py-3.5 text-base font-semibold rounded-full text-white bg-charcoal-950 hover:bg-charcoal-800 transition-all duration-200;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-7 py-3.5 text-base font-semibold rounded-full text-charcoal-950 border-2 border-charcoal-200 hover:border-charcoal-950 transition-all duration-200;
+  }
+
+  .btn-white {
+    @apply inline-flex items-center justify-center px-7 py-3.5 text-base font-semibold rounded-full text-charcoal-950 bg-white hover:bg-charcoal-50 transition-all duration-200;
+  }
+}
+
+/* ─── Blog content default styles (admin HTML lives inside .blog-content) ─── */
+.blog-content {
+  color: #1f2937;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+.blog-content h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: #0f172a;
+}
+.blog-content h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #0f172a;
+}
+.blog-content p { margin: 0.9rem 0; }
+.blog-content ul,
+.blog-content ol {
+  margin: 0.9rem 0;
+  padding-left: 1.5rem;
+}
+.blog-content ul { list-style: disc; }
+.blog-content ol { list-style: decimal; }
+.blog-content li { margin: 0.3rem 0; }
+.blog-content a {
+  color: #059669;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.blog-content a:hover { color: #047857; }
+.blog-content strong { font-weight: 700; color: #0f172a; }
+.blog-content blockquote {
+  border-left: 4px solid #10b981;
+  background: #f0fdf4;
+  margin: 1.2rem 0;
+  padding: 0.75rem 1rem;
+  border-radius: 0 8px 8px 0;
+  color: #064e3b;
+}
+.blog-content code {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.blog-content pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 1rem;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin: 1.2rem 0;
+}
+.blog-content pre code {
+  background: transparent;
+  padding: 0;
+}
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 1rem 0;
+}
+.blog-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+}
+.blog-content th,
+.blog-content td {
+  border: 1px solid #e5e7eb;
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+}
+.blog-content th {
+  background: #f3f4f6;
+  font-weight: 700;
+}
+
+/* ─── Scroll Reveal ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ─── Parallax Image Container ─── */
+.parallax-img {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+/* ─── Marquee ─── */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 25s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Hero Slow Zoom ─── */
+@keyframes slow-zoom {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+.hero-bg-zoom {
+  animation: slow-zoom 20s ease-in-out infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1.1);
+  }
+
+  25% {
+    transform: rotate(-10deg) scale(1.1);
+  }
+
+  75% {
+    transform: rotate(10deg) scale(1.1);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+.group:hover .animate-shake {
+  animation: none;
+}
+
+/* ─── Timeline Glow Effects ─── */
+@keyframes dot-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(234, 120, 20, 0.5);
+  }
+
+  50% {
+    box-shadow: 0 0 16px 6px rgba(234, 120, 20, 0.35);
+  }
+}
+
+@keyframes card-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(234, 120, 20, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 30px -5px rgba(234, 120, 20, 0.12);
+  }
+}
+
+@keyframes line-glow {
+
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.timeline-dot {
+  animation: dot-pulse 2.5s ease-in-out infinite;
+}
+
+.timeline-card {
+  animation: card-glow 4s ease-in-out infinite;
+}
+
+.timeline-line-glow {
+  animation: line-glow 3s ease-in-out infinite;
+}
+
+.timeline-img-glow:hover {
+  box-shadow: 0 0 40px -8px rgba(234, 120, 20, 0.3);
+}
+
+/* ─── Stagger children ─── */
+.stagger-children>* {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stagger-children.visible>*:nth-child(1) {
+  transition-delay: 0s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-children.visible>*:nth-child(2) {
+  transition-delay: 0.1s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-children.visible>*:nth-child(3) {
+  transition-delay: 0.2s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-children.visible>*:nth-child(4) {
+  transition-delay: 0.3s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-children.visible>*:nth-child(5) {
+  transition-delay: 0.4s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-children.visible>*:nth-child(6) {
+  transition-delay: 0.5s;
+  opacity: 1;
+  transform: translateY(0);
+}

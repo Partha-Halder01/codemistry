@@ -1,0 +1,236 @@
+
+    body {
+        background-color: #0c0a18;
+    }
+
+    /* Custom scrollbar for order list and chat */
+    .dashboard-scrollbar::-webkit-scrollbar { width: 6px; }
+    .dashboard-scrollbar::-webkit-scrollbar-track { background: #1f2937; border-radius: 3px; }
+    .dashboard-scrollbar::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 3px; }
+    .dashboard-scrollbar::-webkit-scrollbar-thumb:hover { background: #6b7280; }
+
+    /* Smooth scroll behavior for chat */
+    #chat-box {
+        scroll-behavior: smooth;
+        will-change: scroll-position;
+    }
+
+    /* Modern chat bubble styles with optimized animations */
+    .chat-bubble-user { 
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        color: white;
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+        animation: slideInRight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    .chat-bubble-admin { 
+        background-color: #374151;
+        color: #e5e7eb;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        animation: slideInLeft 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* Active order card with modern styling */
+    .order-card.active {
+        border-color: #3b82f6;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.1) 100%);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        transform: scale(1.02);
+    }
+    
+    .order-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+    }
+    
+    .order-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Disabled button style */
+    button:disabled,
+    button[disabled] {
+        background-color: #4b5563;
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+
+    /* Styles for My Account Section - Mobile Optimized */
+    .account-details-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    @media (min-width: 640px) {
+        .account-details-grid {
+            grid-template-columns: auto 1fr;
+            gap: 0.75rem 1rem;
+            align-items: center;
+        }
+    }
+    
+    .account-label { 
+        font-weight: 600;
+        color: #9ca3af;
+        font-size: 0.875rem;
+    }
+    
+    @media (min-width: 640px) {
+        .account-label {
+            text-align: right;
+        }
+    }
+    
+    .account-value { 
+        color: #e5e7eb;
+        word-break: break-all;
+        font-size: 0.875rem;
+    }
+    
+    .account-input {
+        width: 100%;
+        background-color: #374151;
+        color: white;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid #4b5563;
+        outline: none;
+        font-size: 1rem;
+        transition: all 0.2s ease;
+    }
+    
+    .account-input:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+    }
+
+    /* Mobile-friendly button improvements */
+    .mobile-btn {
+        min-height: 44px;
+        touch-action: manipulation;
+    }
+
+    /* Improved mobile spacing */
+    @media (max-width: 768px) {
+        .order-card {
+            margin-bottom: 0.5rem;
+        }
+        
+        #chat-box {
+            max-height: 400px;
+        }
+        
+        .chat-bubble-user,
+        .chat-bubble-admin {
+            max-width: 85%;
+        }
+    }
+
+    /* Modern glassmorphism effect */
+    .glass-card {
+        background: rgba(31, 41, 55, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(75, 85, 99, 0.5);
+    }
+
+    /* Smooth animations */
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-slide-in {
+        animation: slideIn 0.4s ease-out;
+    }
+
+    /* Mobile navigation improvements */
+    @media (max-width: 1024px) {
+        .mobile-stack {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    /* Auto-scroll indicator */
+    .scroll-to-bottom-btn {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 10;
+        opacity: 0;
+        pointer-events: none;
+        border: none;
+    }
+
+    .scroll-to-bottom-btn.visible {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .scroll-to-bottom-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5);
+    }
+
+    /* Optimized message container */
+    .message-container {
+        contain: content;
+        transform: translateZ(0);
+    }
+
+    /* Loading skeleton */
+    .chat-skeleton {
+        background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+        border-radius: 12px;
+    }
+
+    @keyframes shimmer {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+    }

@@ -1,0 +1,192 @@
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1729 100%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Animated Background */
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .animated-bg {
+            background: linear-gradient(270deg, #0a0e27, #1a1f3a, #0f1729, #1e2847);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        /* Floating Background Elements */
+        .floating-shapes {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-50px) rotate(180deg); }
+        }
+
+        .shape:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            bottom: 15%;
+            left: 20%;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #f59e0b, #eab308);
+            border-radius: 41% 59% 41% 59% / 41% 59% 41% 59%;
+            animation-delay: 4s;
+        }
+
+        /* Glass Card Effect */
+        .glass-card {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.9) 0%, rgba(31, 41, 55, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 30px 60px rgba(59, 130, 246, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Input Styles */
+        .modern-input {
+            background: linear-gradient(135deg, rgba(31, 41, 55, 0.8) 0%, rgba(17, 24, 39, 0.9) 100%);
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            color: #e5e7eb;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modern-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2), 0 8px 20px rgba(59, 130, 246, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .modern-input:hover:not(:focus) {
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        /* Button Styles */
+        .btn-glow {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-glow:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.5);
+        }
+
+        /* Fade In Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Icon Animation */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .icon-bounce {
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        /* Title Gradient */
+        .title-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Loading Spinner */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+    </style>
