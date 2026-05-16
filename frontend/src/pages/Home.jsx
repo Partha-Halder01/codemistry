@@ -8,7 +8,7 @@ import {
     BookOpen, Calendar
 } from 'lucide-react';
 import Seo from '../components/Seo';
-import { organizationLd, localBusinessLd, SITE_INFO } from '../seo/structuredData';
+import { organizationLd, localBusinessLd, faqPageLd, aggregateRatingLd, websiteSearchLd, SITE_INFO } from '../seo/structuredData';
 
 /* ─── Scroll Reveal Hook ─── */
 const useScrollReveal = () => {
@@ -127,6 +127,14 @@ const testimonials = [
     { name: 'Amit Verma', role: 'Managing Director, BuildSmart Infra', text: 'From concept to launch in just 6 weeks! Codemistry delivered a polished mobile app that our field engineers love. Their ongoing support and quick response time has been exceptional.', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&q=80', rating: 5 },
 ];
 
+const HOME_FAQS = [
+    { q: 'How much does web development cost in India?', a: 'Basic business websites start from ₹15,000. Custom web applications and e-commerce platforms range from ₹1,50,000 to ₹6,00,000+, depending on features and integrations. All pricing at Codemistry is INR-based and GST-compliant.' },
+    { q: 'How long does it take to build a website in India?', a: 'A standard business website takes 2–4 weeks. Custom platforms, e-commerce stores with Razorpay/UPI integration, and mobile apps typically take 4–8 weeks from kickoff to launch.' },
+    { q: 'Do you work with clients across India, not just West Bengal?', a: 'Yes, Codemistry works with businesses across India including Delhi NCR, Mumbai, Bangalore, Hyderabad, Chennai, Kolkata, and Pune, as well as Tier-2 cities. All projects are managed remotely with daily updates.' },
+    { q: 'What is included in your web development service?', a: 'Our web development service includes UI/UX design, responsive development, on-page SEO setup, Razorpay and UPI payment integration, Google Analytics, and 3 months of free support after launch.' },
+    { q: 'Can you integrate AI chatbots into an existing website?', a: 'Yes. We can integrate multilingual AI chatbots — supporting English, Hindi, Bengali, and Tamil — into any existing website or mobile app within 2–4 weeks, with no full rebuild required.' },
+];
+
 const Home = () => {
     useScrollReveal();
     const registerParallax = useParallax();
@@ -215,7 +223,18 @@ const Home = () => {
                 description="Codemistry is an India-based web & app development company. Affordable INR pricing, GST-compliant, AI integrations, e-commerce, and more — for businesses across India."
                 canonical={SITE_INFO.url + '/'}
                 keywords="web development company India, app development India, ecommerce India, AI integration India, custom software India, Codemistry"
-                jsonLd={[organizationLd(), localBusinessLd()]}
+                jsonLd={[
+                    organizationLd(),
+                    localBusinessLd(),
+                    websiteSearchLd(),
+                    faqPageLd(HOME_FAQS),
+                    aggregateRatingLd({
+                        ratingValue: 5.0,
+                        reviewCount: testimonials.length,
+                        itemName: SITE_INFO.name,
+                        itemUrl: SITE_INFO.url + '#business',
+                    }),
+                ]}
             />
 
             {/* ═══════════════════════════════════════════════ */}

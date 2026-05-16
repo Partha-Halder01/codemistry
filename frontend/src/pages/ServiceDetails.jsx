@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../api';
 import Seo from '../components/Seo';
-import { breadcrumbLd, organizationLd, serviceLd, SITE_INFO } from '../seo/structuredData';
+import { breadcrumbLd, organizationLd, serviceLd, faqPageLd, aggregateRatingLd, SITE_INFO } from '../seo/structuredData';
 import {
     CheckCircle2, ChevronDown, ArrowLeft, ArrowRight,
     Star, Phone, Shield, Clock, Zap, MessageCircle,
@@ -122,22 +122,42 @@ const ServiceDetails = () => {
 
     const canonical = `${SITE_INFO.url}/services/${service.slug}`;
 
+    const jsonLdBlocks = [
+        organizationLd(),
+        breadcrumbLd([
+            { name: 'Home', url: SITE_INFO.url + '/' },
+            { name: 'Services', url: SITE_INFO.url + '/services' },
+            { name: service.name, url: canonical },
+        ]),
+        serviceLd(service, canonical),
+    ];
+    if (service.faq && service.faq.length > 0) {
+        jsonLdBlocks.push(faqPageLd(service.faq));
+    }
+    if (service.rating) {
+        jsonLdBlocks.push(aggregateRatingLd({
+            ratingValue: service.rating,
+            reviewCount: 5,
+            itemName: service.name,
+            itemUrl: canonical,
+        }));
+    }
+
+    const serviceOgImage = service.cover_image_path
+        ? (service.cover_image_path.startsWith('http')
+            ? service.cover_image_path
+            : `${SITE_INFO.url}/storage/${service.cover_image_path}`)
+        : undefined;
+
     return (
         <div className="bg-white min-h-screen pb-0">
             <Seo
-                title={`${service.name} in India — Pricing, Process & Features`}
-                description={(service.description || '').slice(0, 160) || `Hire Codemistry for ${service.name} in India. Affordable INR pricing, transparent process, and ongoing support.`}
+                title={service.meta_title || `${service.name} in India — Pricing, Process & Features`}
+                description={service.meta_description || (service.description || '').slice(0, 160) || `Hire Codemistry for ${service.name} in India. Affordable INR pricing, transparent process, and ongoing support.`}
                 canonical={canonical}
-                keywords={`${service.name} India, ${service.name} cost India, ${service.name} company India, Codemistry`}
-                jsonLd={[
-                    organizationLd(),
-                    breadcrumbLd([
-                        { name: 'Home', url: SITE_INFO.url + '/' },
-                        { name: 'Services', url: SITE_INFO.url + '/services' },
-                        { name: service.name, url: canonical },
-                    ]),
-                    serviceLd(service, canonical),
-                ]}
+                keywords={service.meta_keywords || `${service.name} India, ${service.name} cost India, ${service.name} company India, Codemistry`}
+                ogImage={serviceOgImage}
+                jsonLd={jsonLdBlocks}
             />
 
             {/* ═══ HERO — Two Column layout ═══ */}

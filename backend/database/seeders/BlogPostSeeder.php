@@ -185,6 +185,200 @@ HTML
 HTML
             ],
             [
+                'title'   => 'WordPress vs Custom Website Development for Indian Businesses',
+                'excerpt' => 'Should your Indian business use WordPress or invest in a custom-built website? A frank comparison covering cost, flexibility, SEO, performance, and long-term ownership in the Indian market.',
+                'meta_title' => 'WordPress vs Custom Website Development India 2026 | Codemistry',
+                'meta_description' => 'WordPress or custom website for your Indian business? A no-fluff comparison covering costs in INR, SEO, flexibility, and long-term value for Indian SMBs.',
+                'meta_keywords' => 'wordpress vs custom website India, custom website development India, wordpress development India, website development company India',
+                'tags' => ['Web Development', 'WordPress', 'India', 'Business', 'Comparison'],
+                'author_name' => 'Codemistry Team',
+                'published_at' => $now->copy()->subDays(35),
+                'content_css' => '.lede{font-size:1.05rem;color:#374151;line-height:1.7}h2{margin-top:1.6rem}h3{margin-top:1.2rem}table{width:100%;border-collapse:collapse;margin:18px 0}th,td{padding:10px 12px;border:1px solid #e5e7eb;text-align:left;font-size:.95rem}th{background:#f3f4f6;font-weight:700}.verdict{background:#ecfdf5;border:1px solid #a7f3d0;padding:16px;border-radius:12px;margin:18px 0}.verdict h3{color:#065f46;margin:0 0 6px}.note{background:#fff7ed;border:1px solid #fed7aa;padding:12px 16px;border-radius:8px;margin:14px 0}',
+                'content_html' => <<<'HTML'
+<p class="lede">This is one of the most common questions Indian business owners face: do we build on <strong>WordPress</strong> for speed and budget, or invest in a <strong>custom website</strong> for flexibility and ownership? In 2026, the honest answer depends on your business stage, budget, and growth trajectory.</p>
+
+<h2>The Core Difference</h2>
+<p>WordPress is an open-source CMS that powers ~43% of all websites globally. You pick a theme, install plugins, and you're live in days. A custom website is built from scratch — typically with frameworks like React or Next.js for the frontend and Laravel or Node.js for the backend — designed exactly for your workflow, not around a template.</p>
+
+<h2>Side-by-Side Comparison</h2>
+<table>
+<thead><tr><th>Factor</th><th>WordPress</th><th>Custom Website</th></tr></thead>
+<tbody>
+<tr><td>Upfront cost (India)</td><td>₹8,000 – ₹60,000</td><td>₹40,000 – ₹3,00,000+</td></tr>
+<tr><td>Time to launch</td><td>1–2 weeks</td><td>3–8 weeks</td></tr>
+<tr><td>Design flexibility</td><td>Limited by theme</td><td>100% custom</td></tr>
+<tr><td>Performance (LCP)</td><td>Moderate (plugins bloat)</td><td>Excellent (lean code)</td></tr>
+<tr><td>Security risks</td><td>Higher (plugin vulnerabilities)</td><td>Lower (controlled codebase)</td></tr>
+<tr><td>Ongoing maintenance</td><td>Plugin updates, hack risk</td><td>Stable, you control releases</td></tr>
+<tr><td>Scalability</td><td>Limited by hosting + plugins</td><td>Scales with your architecture</td></tr>
+<tr><td>India-specific integrations (UPI, GSTN)</td><td>Available via plugins (variable quality)</td><td>Built exactly to spec</td></tr>
+<tr><td>Ownership</td><td>Tied to WP ecosystem</td><td>100% yours</td></tr>
+</tbody>
+</table>
+
+<h2>When WordPress is the Right Choice</h2>
+<ul>
+  <li>You are an early-stage business validating an idea and need a site in 2 weeks</li>
+  <li>Your site is primarily a blog, portfolio, or brochure — low on custom logic</li>
+  <li>Your budget is under ₹30,000 and speed-to-market matters most</li>
+  <li>You have an in-house team comfortable managing WordPress plugins</li>
+</ul>
+
+<div class="verdict">
+  <h3>WordPress Verdict</h3>
+  <p>Great for bootstrapped starts. Will likely be replaced or migrated when you scale. Budget for that migration cost in your 3-year planning.</p>
+</div>
+
+<h2>When Custom Development is the Right Choice</h2>
+<ul>
+  <li>Your website is a core product — e-commerce, SaaS, booking platform, CRM</li>
+  <li>You need deep India-specific integrations: UPI Intent, Razorpay, GSTN, Shiprocket, Tally export</li>
+  <li>Performance is critical (Core Web Vitals score directly impacts ad spend ROI)</li>
+  <li>You are growing past 50,000 monthly visitors and WordPress hosting costs are climbing</li>
+  <li>You want to own the IP completely — no licensing risk</li>
+</ul>
+
+<div class="verdict">
+  <h3>Custom Verdict</h3>
+  <p>Higher upfront, but typically 30–50% lower total cost of ownership over 3 years for businesses that outgrow WordPress. No plugin subscription fees, no unexpected hack recovery costs.</p>
+</div>
+
+<h2>The Indian Market Reality in 2026</h2>
+<p>Many Indian agencies will sell you WordPress even when you don't need it, because it is faster to deliver. At Codemistry, we recommend WordPress only for genuinely simple, content-first sites. The moment you need Razorpay subscription billing, GSTN invoice generation, custom order workflows, or AI chatbot integration — go custom from day one. Migrating later is painful and often costs more than building right initially.</p>
+
+<div class="note"><strong>Rule of thumb:</strong> If your website will generate revenue directly (e-commerce, bookings, subscriptions), invest in custom from the start. If it is purely marketing-led, WordPress can work — but choose a developer who delivers a lean, well-coded build, not a 40-plugin monstrosity.</div>
+
+<h2>What Codemistry Recommends</h2>
+<p>We build custom websites using React, Next.js, and Laravel — optimised for Indian users, Indian payment systems, and SEO from day one. <a href="/contact">Talk to us</a> about your project and we will give you an honest recommendation, including whether WordPress might actually be the right fit for your current stage.</p>
+HTML
+            ],
+            [
+                'title'   => 'Web Development Agency vs Freelancer: Complete Guide for Indian Businesses',
+                'excerpt' => 'Agency or freelancer for your Indian business website? This guide compares cost, quality, accountability, IP ownership, and GST compliance — so you can make an informed decision.',
+                'meta_title' => 'Web Development Agency vs Freelancer India 2026 | Codemistry',
+                'meta_description' => 'Agency or freelancer for your Indian web project? A complete comparison covering cost in INR, accountability, IP ownership, GST invoicing, and long-term support.',
+                'meta_keywords' => 'web development agency vs freelancer India, hire web developer India, web development company India, freelance web developer India, website development agency India',
+                'tags' => ['Web Development', 'Hiring', 'India', 'Freelancer', 'Agency'],
+                'author_name' => 'Codemistry Team',
+                'published_at' => $now->copy()->subDays(42),
+                'content_css' => '.lede{font-size:1.05rem;color:#374151;line-height:1.7}h2{margin-top:1.6rem}table{width:100%;border-collapse:collapse;margin:18px 0}th,td{padding:10px 12px;border:1px solid #e5e7eb;text-align:left;font-size:.95rem}th{background:#f3f4f6;font-weight:700}.warn{background:#fef2f2;border:1px solid #fecaca;padding:14px 18px;border-radius:10px;margin:16px 0}.tip{background:#f0f9ff;border:1px solid #bae6fd;padding:14px 18px;border-radius:10px;margin:16px 0}',
+                'content_html' => <<<'HTML'
+<p class="lede">India has millions of freelance web developers — and thousands of agencies. The price gap can be 5× for the same brief. But cost is only one dimension. This guide helps you decide which path is right for your business, not just your budget.</p>
+
+<h2>The Full Comparison</h2>
+<table>
+<thead><tr><th>Factor</th><th>Freelancer</th><th>Agency</th></tr></thead>
+<tbody>
+<tr><td>Cost (India, 2026)</td><td>₹5,000 – ₹80,000</td><td>₹25,000 – ₹5,00,000+</td></tr>
+<tr><td>Speed to start</td><td>Days</td><td>1–2 weeks</td></tr>
+<tr><td>Accountability</td><td>One person</td><td>Team + contracts</td></tr>
+<tr><td>Availability</td><td>Can go silent</td><td>SLA-backed response</td></tr>
+<tr><td>Design + Dev together</td><td>Rarely both in one person</td><td>Integrated team</td></tr>
+<tr><td>Post-launch support</td><td>Varies widely</td><td>Structured contracts</td></tr>
+<tr><td>IP ownership</td><td>Often unclear</td><td>Explicitly documented</td></tr>
+<tr><td>GST invoice</td><td>Often unavailable</td><td>Standard practice</td></tr>
+<tr><td>Scalability</td><td>Limited by one person's time</td><td>Can add resources</td></tr>
+</tbody>
+</table>
+
+<h2>The Real Risks of the Freelancer Route</h2>
+<ul>
+  <li><strong>Going dark:</strong> A solo freelancer can disappear mid-project. This is the #1 complaint we hear from Indian businesses who come to us after a failed project.</li>
+  <li><strong>No GST invoice:</strong> Most individual freelancers are not GST-registered. If your business is GST-registered, you lose the input credit and the expense may not be book-entry clean.</li>
+  <li><strong>IP confusion:</strong> Without a written contract specifying ownership transfer on full payment, the code may legally belong to the developer.</li>
+  <li><strong>No design:</strong> Most backend developers cannot design. Most designers cannot code. A freelancer strong in one often produces poor results in the other.</li>
+</ul>
+
+<div class="warn"><strong>Warning:</strong> Never pay 100% advance to a freelancer. 30-40% upfront, milestones tied to deliverables, final payment on handover. This is the only safe structure for Indian projects.</div>
+
+<h2>When a Freelancer is the Right Call</h2>
+<ul>
+  <li>You are a developer yourself and just need a specific module built</li>
+  <li>You have a very tight budget (<₹25,000) and a well-defined, simple brief</li>
+  <li>You have worked with this specific freelancer before and trust them</li>
+  <li>The project is truly isolated (landing page, single script, API integration)</li>
+</ul>
+
+<h2>When an Agency is Worth the Premium</h2>
+<ul>
+  <li>This website is central to your revenue — downtime or poor quality directly costs you money</li>
+  <li>You need design, development, and SEO from one accountable partner</li>
+  <li>You are a business that bills clients and needs proper GST documentation</li>
+  <li>You want someone who will still answer the phone 6 months after launch</li>
+  <li>Your project involves third-party integrations (payment gateways, ERPs, shipping APIs)</li>
+</ul>
+
+<div class="tip"><strong>Tip:</strong> Ask any agency for 3 live client references — not just portfolio screenshots. A real agency will have clients happy to take a 5-minute call. A fake one won't.</div>
+
+<h2>The Codemistry Model</h2>
+<p>We operate as a small, senior team — no junior developers deployed on client projects. Every project has a dedicated lead developer and a project manager. We issue proper GST invoices, sign IP transfer agreements, and offer 3 months of post-launch support as standard. <a href="/contact">Compare our approach</a> with whoever else you are evaluating.</p>
+HTML
+            ],
+            [
+                'title'   => 'How Long Does Website Development Take in India? Realistic Timelines Explained',
+                'excerpt' => 'Planning a website for your Indian business? This guide gives you realistic development timelines by website type — from simple brochure sites to complex e-commerce platforms — and explains what causes delays.',
+                'meta_title' => 'Website Development Timeline India 2026: Realistic Guide | Codemistry',
+                'meta_description' => 'How long does website development take in India? Realistic timelines for brochure sites, business websites, e-commerce, and custom apps — with tips to avoid delays.',
+                'meta_keywords' => 'website development timeline India, how long to build a website India, web development time India, website launch timeline, website development process India',
+                'tags' => ['Web Development', 'Timeline', 'India', 'Planning'],
+                'author_name' => 'Codemistry Team',
+                'published_at' => $now->copy()->subDays(49),
+                'content_css' => '.lede{font-size:1.05rem;color:#374151;line-height:1.7}h2{margin-top:1.6rem}table{width:100%;border-collapse:collapse;margin:18px 0}th,td{padding:10px 12px;border:1px solid #e5e7eb;text-align:left;font-size:.95rem}th{background:#f3f4f6;font-weight:700}.phase{background:#f8fafc;border-left:4px solid #10b981;padding:14px 18px;border-radius:6px;margin:14px 0}.warn{background:#fff7ed;border:1px solid #fed7aa;padding:14px 18px;border-radius:10px;margin:16px 0}',
+                'content_html' => <<<'HTML'
+<p class="lede">One of the most common questions from Indian business owners: "How quickly can you launch my website?" The honest answer depends on what you are building. This guide breaks down realistic timelines by project type — including the delays that almost nobody talks about upfront.</p>
+
+<h2>Timeline by Website Type (India, 2026)</h2>
+<table>
+<thead><tr><th>Website Type</th><th>Realistic Timeline</th><th>What's Included</th></tr></thead>
+<tbody>
+<tr><td>Brochure / Landing Page</td><td>1 – 2 weeks</td><td>Up to 5 pages, contact form, basic SEO</td></tr>
+<tr><td>Business Website</td><td>2 – 4 weeks</td><td>10–20 pages, blog, lead forms, WhatsApp integration, analytics</td></tr>
+<tr><td>E-commerce Website</td><td>4 – 8 weeks</td><td>Product catalog, Razorpay/UPI checkout, GST invoicing, Shiprocket, admin panel</td></tr>
+<tr><td>Custom Web Application</td><td>8 – 16 weeks</td><td>User accounts, dashboards, APIs, roles, admin, mobile-responsive</td></tr>
+<tr><td>Mobile App (iOS + Android)</td><td>8 – 14 weeks</td><td>React Native/Flutter, backend API, app store submission</td></tr>
+</tbody>
+</table>
+
+<h2>The 4 Phases of Every Project</h2>
+
+<div class="phase">
+  <strong>Phase 1: Discovery & Scope (Week 1)</strong><br/>
+  Requirements gathering, wireframes, content inventory, payment gateway selection. Most delays originate here — if you don't have your content ready, nothing can be designed.
+</div>
+
+<div class="phase">
+  <strong>Phase 2: Design (1–2 weeks)</strong><br/>
+  UI design mockups in Figma, client approval rounds. Allow 2–3 feedback cycles. Each round of major changes adds 3–5 days.
+</div>
+
+<div class="phase">
+  <strong>Phase 3: Development & Integration (2–8 weeks depending on type)</strong><br/>
+  Frontend build, backend development, payment gateway integration, SEO setup, testing across devices. This is the longest phase and the one agencies can compress most with an experienced team.
+</div>
+
+<div class="phase">
+  <strong>Phase 4: QA, Content Load & Launch (1 week)</strong><br/>
+  Bug fixes, content population, Google Analytics, Search Console setup, go-live. DNS propagation takes 24–48 hours.
+</div>
+
+<h2>What Causes Delays (The Real Reasons)</h2>
+<ol>
+  <li><strong>Client content not ready</strong> — text, images, product details. This is the #1 cause of delays in India. If you don't have content, no agency can launch on time.</li>
+  <li><strong>Scope creep</strong> — "Can you also add a booking system?" after development has started adds 1–3 weeks per major addition.</li>
+  <li><strong>Payment gateway KYC</strong> — Razorpay account verification takes 2–5 business days. Start early.</li>
+  <li><strong>Revision cycles</strong> — unlimited revision requests without a scope document cause indefinite delays. Always sign off on design before development begins.</li>
+  <li><strong>Hosting setup delays</strong> — domain transfers, SSL certificates, server provisioning can add 3–5 days if not planned.</li>
+</ol>
+
+<div class="warn"><strong>Tip:</strong> The single most effective thing you can do to speed up your website launch is to have your final content (text and images) ready before development begins. Agencies that don't ask for content upfront are not planning your project properly.</div>
+
+<h2>How Codemistry Manages Timelines</h2>
+<p>At Codemistry, every project starts with a milestone document signed by both parties. Content deadlines are the client's responsibility; development milestones are ours. We use a milestone-based payment structure so you only pay for completed, approved stages. This keeps both sides accountable.</p>
+
+<p>Want to know the realistic timeline for your specific project? <a href="/contact">Send us a brief</a> and we'll give you an honest estimate — usually within 24 hours.</p>
+HTML
+            ],
+            [
                 'title'   => 'AI Integration for Indian Startups: Use Cases & Costs in 2026',
                 'excerpt' => 'Practical AI use cases Indian founders are actually shipping in 2026 — chatbots, document automation, lead scoring — with real INR cost ranges and ROI examples.',
                 'meta_title' => 'AI Integration for Indian Startups in 2026: Use Cases & Costs',

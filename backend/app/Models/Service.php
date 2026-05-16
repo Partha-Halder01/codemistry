@@ -18,7 +18,10 @@ class Service extends Model
         'rating',
         'faq',
         'process_steps',
-        'is_featured'
+        'is_featured',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
     ];
 
     protected $casts = [

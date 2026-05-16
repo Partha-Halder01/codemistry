@@ -20,7 +20,10 @@ const ManageServices = () => {
         is_featured: false,
         faq: [], // Array of { q: '', a: '' }
         pricings: [], // Array of { id?: null, plan_name: '', price: '', features: [], is_popular: false }
-        process_steps: [] // Array of { title: '', description: '', icon: '' }
+        process_steps: [], // Array of { title: '', description: '', icon: '' }
+        meta_title: '',
+        meta_description: '',
+        meta_keywords: '',
     };
     const [formData, setFormData] = useState(initialFormState);
 
@@ -102,6 +105,9 @@ const ManageServices = () => {
             full_price: s.full_price || '',
             deposit_price: s.deposit_price || '',
             is_featured: s.is_featured || false,
+            meta_title: s.meta_title || '',
+            meta_description: s.meta_description || '',
+            meta_keywords: s.meta_keywords || '',
         });
         setIsEditing(true);
     };
@@ -345,6 +351,54 @@ const ManageServices = () => {
                                     </div>
                                 ))}
                                 {formData.faq.length === 0 && <p className="text-sm text-charcoal-400 italic">No FAQs added.</p>}
+                            </div>
+                        </section>
+
+                        <div className="h-px bg-charcoal-100"></div>
+
+                        {/* 5. SEO */}
+                        <section className="space-y-5">
+                            <h3 className="text-lg font-bold text-charcoal-900 flex items-center gap-2">
+                                <span className="w-6 h-6 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center text-sm">5</span>
+                                SEO Settings
+                            </h3>
+                            <div className="space-y-4 pl-8">
+                                <div>
+                                    <label className={labelClass}>Meta Title <span className="text-charcoal-400 font-normal">(max 80 chars)</span></label>
+                                    <input
+                                        type="text"
+                                        name="meta_title"
+                                        value={formData.meta_title}
+                                        onChange={handleInputChange}
+                                        maxLength={80}
+                                        className={inputClass}
+                                        placeholder="Custom SEO title — leave blank to use auto-generated title"
+                                    />
+                                </div>
+                                <div>
+                                    <label className={labelClass}>Meta Description <span className="text-charcoal-400 font-normal">(max 200 chars)</span></label>
+                                    <textarea
+                                        name="meta_description"
+                                        value={formData.meta_description}
+                                        onChange={handleInputChange}
+                                        maxLength={200}
+                                        rows={3}
+                                        className={`${inputClass} resize-none`}
+                                        placeholder="Custom meta description for search engines — leave blank to use service description"
+                                    />
+                                </div>
+                                <div>
+                                    <label className={labelClass}>Meta Keywords <span className="text-charcoal-400 font-normal">(comma-separated)</span></label>
+                                    <input
+                                        type="text"
+                                        name="meta_keywords"
+                                        value={formData.meta_keywords}
+                                        onChange={handleInputChange}
+                                        maxLength={500}
+                                        className={inputClass}
+                                        placeholder="e.g. web development India, website company, custom web app India"
+                                    />
+                                </div>
                             </div>
                         </section>
 

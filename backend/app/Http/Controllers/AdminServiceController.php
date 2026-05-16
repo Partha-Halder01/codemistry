@@ -53,6 +53,9 @@ class AdminServiceController extends Controller
             'faq' => 'nullable|array',
             'process_steps' => 'nullable|array',
             'is_featured' => 'boolean',
+            'meta_title' => 'nullable|string|max:80',
+            'meta_description' => 'nullable|string|max:200',
+            'meta_keywords' => 'nullable|string|max:500',
             'pricings' => 'nullable|array',
             'pricings.*.plan_name' => 'required|string',
             'pricings.*.price' => 'required|integer',
@@ -61,7 +64,7 @@ class AdminServiceController extends Controller
             'pricings.*.is_popular' => 'nullable|boolean',
         ]);
 
-        $serviceData = $request->only(['name', 'slug', 'description', 'full_price', 'deposit_price', 'features', 'faq', 'process_steps', 'is_featured']);
+        $serviceData = $request->only(['name', 'slug', 'description', 'full_price', 'deposit_price', 'features', 'faq', 'process_steps', 'is_featured', 'meta_title', 'meta_description', 'meta_keywords']);
 
         if ($request->hasFile('cover_image')) {
             $path = $request->file('cover_image')->store('service_covers', 'public');
@@ -122,6 +125,9 @@ class AdminServiceController extends Controller
             'faq' => 'nullable|array',
             'process_steps' => 'nullable|array',
             'is_featured' => 'boolean',
+            'meta_title' => 'nullable|string|max:80',
+            'meta_description' => 'nullable|string|max:200',
+            'meta_keywords' => 'nullable|string|max:500',
             'pricings' => 'nullable|array',
             'pricings.*.id' => 'nullable|integer',
             'pricings.*.plan_name' => 'required|string',
@@ -131,7 +137,7 @@ class AdminServiceController extends Controller
             'pricings.*.is_popular' => 'nullable|boolean',
         ]);
 
-        $serviceData = $request->only(['name', 'slug', 'description', 'full_price', 'deposit_price', 'features', 'faq', 'process_steps', 'is_featured']);
+        $serviceData = $request->only(['name', 'slug', 'description', 'full_price', 'deposit_price', 'features', 'faq', 'process_steps', 'is_featured', 'meta_title', 'meta_description', 'meta_keywords']);
 
         if ($request->hasFile('cover_image')) {
             // Delete old image if exists

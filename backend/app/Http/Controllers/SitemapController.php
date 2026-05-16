@@ -39,6 +39,21 @@ class SitemapController extends Controller
             ];
         }
 
+        $cityServiceCombos = [
+            ['service' => 'web-development', 'cities' => ['delhi-ncr', 'mumbai', 'bangalore', 'hyderabad', 'chennai', 'kolkata', 'pune']],
+            ['service' => 'ai-integration',  'cities' => ['delhi-ncr', 'mumbai', 'bangalore', 'hyderabad', 'chennai', 'kolkata', 'pune']],
+        ];
+        foreach ($cityServiceCombos as $combo) {
+            foreach ($combo['cities'] as $city) {
+                $urls[] = [
+                    'loc'        => $base . '/services/' . $combo['service'] . '-' . $city,
+                    'changefreq' => 'monthly',
+                    'priority'   => '0.7',
+                    'lastmod'    => now(),
+                ];
+            }
+        }
+
         $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
         $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
         foreach ($urls as $u) {

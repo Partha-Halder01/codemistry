@@ -106,3 +106,42 @@ export const itemListLd = (items) => ({
         url: it.url,
     })),
 });
+
+export const faqPageLd = (faqs) => ({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+});
+
+export const aggregateRatingLd = ({ ratingValue, reviewCount, itemName, itemUrl }) => ({
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': itemUrl || SITE.url + '#business',
+    name: itemName || SITE.name,
+    aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: String(ratingValue),
+        reviewCount: String(reviewCount),
+        bestRating: '5',
+        worstRating: '1',
+    },
+});
+
+export const websiteSearchLd = () => ({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE.name,
+    url: SITE.url,
+    potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+            '@type': 'EntryPoint',
+            urlTemplate: `${SITE.url}/blog?search={search_term_string}`,
+        },
+        'query-input': 'required name=search_term_string',
+    },
+});
