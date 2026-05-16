@@ -91,9 +91,13 @@ class ChatbotController extends Controller
 
         $systemInstructions .= "\n=== Website Content ===\n" . $websiteContext . "\n";
 
-        // Using Google Gemini API (gemini-2.5-flash-lite — lowest token cost in the family)
-        $apiKey = env('GEMINI_API_KEY', 'AIzaSyA1NrGO5wW4Gork6xa2OixlJSXRG7LAc-Y');
-        $model  = env('GEMINI_MODEL', 'gemini-2.5-flash-lite');
+        // Using Google Gemini API — key and model set in .env
+        $apiKey = env('GEMINI_API_KEY');
+        $model  = env('GEMINI_MODEL', 'gemini-2.0-flash-lite');
+
+        if (empty($apiKey)) {
+            return response()->json(['reply' => 'AI assistant is temporarily unavailable. Please contact us via the Contact page.']);
+        }
 
         try {
             $url = "https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent?key={$apiKey}";
