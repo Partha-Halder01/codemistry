@@ -7,11 +7,30 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
 
-    <!-- Performance: preconnect to external origins -->
+    <!-- Performance: preconnect to all external origins FIRST -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
     <link rel="dns-prefetch" href="https://images.unsplash.com" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
+    <!-- Google Fonts: non-blocking load (print → all swap trick) -->
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+      media="print"
+      onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" />
+    </noscript>
+
+    <!-- Preload LCP hero image (mobile-size for fast paint) -->
+    <link rel="preload" as="image"
+      href="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=75&fm=webp"
+      imagesrcset="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=75&fm=webp 800w, https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1400&q=80&fm=webp 1400w"
+      imagesizes="100vw"
+      fetchpriority="high" />
 
     <!-- Google Tag Manager (only fires when VITE_GTM_ID env var is set) -->
     <script>
@@ -26,8 +45,8 @@
     </script>
 
     <title>Codemistry — Web & App Development Company in India</title>
-    <meta name="description" content="Codemistry is an India-based web & app development company building affordable, high-performance websites, mobile apps, e-commerce stores and AI integrations for businesses across India." />
-    <meta name="keywords" content="web development India, app development India, ecommerce India, AI integration India, custom software India, website company India" />
+    <meta name="description" content="Codemistry is an India-based web & app development company. Websites, mobile apps, AI chatbots, WhatsApp automation, CRM & e-commerce for Indian businesses." />
+    <meta name="keywords" content="web development company India, app development India, AI chatbot India, WhatsApp business API integration, AI integration India, ecommerce India, custom CRM India, vibe coding India, agentic AI India, website development for small business India" />
 
     <!-- India geo -->
     <meta name="geo.region" content="IN-WB" />
@@ -36,7 +55,7 @@
     <!-- Open Graph defaults -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Codemistry — Web & App Development Company in India" />
-    <meta property="og:description" content="Affordable, high-performance websites, mobile apps and AI integrations built for Indian businesses." />
+    <meta property="og:description" content="Affordable, high-performance websites, mobile apps, AI chatbots and automation built for Indian businesses." />
     <meta property="og:locale" content="en_IN" />
     <meta property="og:image" content="/og-default.png" />
 

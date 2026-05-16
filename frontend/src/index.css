@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+/* Google Fonts loaded non-blocking via index.html <link> — do NOT use @import here */
 
 @tailwind base;
 @tailwind components;
@@ -356,4 +356,44 @@
   transition-delay: 0.5s;
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ─── Mobile Performance: disable heavy animations on small screens ─── */
+@media (max-width: 767px) {
+  /* Disable hero slow-zoom — biggest GPU drain on mobile */
+  .hero-bg-zoom {
+    animation: none;
+  }
+
+  /* Disable floating/glowing decorative animations */
+  .animate-float,
+  .timeline-dot-pulse,
+  .timeline-card-glow,
+  .timeline-line-glow {
+    animation: none;
+  }
+
+  /* Slow down marquee on mobile (saves battery, reduces jank) */
+  .marquee-track {
+    animation-duration: 40s;
+  }
+}
+
+/* ─── Reduced-motion: respect user accessibility preferences ─── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg-zoom,
+  .animate-float,
+  .marquee-track,
+  .timeline-dot-pulse,
+  .timeline-card-glow,
+  .timeline-line-glow {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
 }

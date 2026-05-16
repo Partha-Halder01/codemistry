@@ -130,9 +130,11 @@ const testimonials = [
 const HOME_FAQS = [
     { q: 'How much does web development cost in India?', a: 'Basic business websites start from ₹15,000. Custom web applications and e-commerce platforms range from ₹1,50,000 to ₹6,00,000+, depending on features and integrations. All pricing at Codemistry is INR-based and GST-compliant.' },
     { q: 'How long does it take to build a website in India?', a: 'A standard business website takes 2–4 weeks. Custom platforms, e-commerce stores with Razorpay/UPI integration, and mobile apps typically take 4–8 weeks from kickoff to launch.' },
+    { q: 'Can you build a WhatsApp AI chatbot for my Indian business?', a: 'Yes. We build WhatsApp Business API chatbots integrated with AI — handling customer queries, order updates, lead capture, and support in English, Hindi, Bengali, and Tamil. Most WhatsApp chatbot projects go live in 2–4 weeks.' },
     { q: 'Do you work with clients across India, not just West Bengal?', a: 'Yes, Codemistry works with businesses across India including Delhi NCR, Mumbai, Bangalore, Hyderabad, Chennai, Kolkata, and Pune, as well as Tier-2 cities. All projects are managed remotely with daily updates.' },
     { q: 'What is included in your web development service?', a: 'Our web development service includes UI/UX design, responsive development, on-page SEO setup, Razorpay and UPI payment integration, Google Analytics, and 3 months of free support after launch.' },
-    { q: 'Can you integrate AI chatbots into an existing website?', a: 'Yes. We can integrate multilingual AI chatbots — supporting English, Hindi, Bengali, and Tamil — into any existing website or mobile app within 2–4 weeks, with no full rebuild required.' },
+    { q: 'What is vibe coding and do you offer it?', a: 'Vibe coding is AI-assisted development where we use tools like GitHub Copilot, Claude, and Cursor to ship MVPs and prototypes 40–60% faster. Yes, Codemistry uses vibe coding techniques to deliver faster without sacrificing code quality.' },
+    { q: 'Can you integrate AI agents and automation for my Indian business?', a: 'Yes. We build agentic AI systems — including AI SDRs, document automation, lead scoring agents, and internal knowledge assistants — using Gemini, GPT-4o, and Claude APIs. Projects start from ₹40,000.' },
 ];
 
 const Home = () => {
@@ -219,10 +221,10 @@ const Home = () => {
     return (
         <div className="bg-white overflow-x-hidden">
             <Seo
-                title="Web & App Development Company in India — Affordable, On-Time"
-                description="Codemistry is an India-based web & app development company. Affordable INR pricing, GST-compliant, AI integrations, e-commerce, and more — for businesses across India."
+                title="Web & App Development | AI Chatbot & WhatsApp Automation India"
+                description="Codemistry builds websites, mobile apps, AI chatbots, WhatsApp automation & custom CRM for Indian businesses. Affordable INR pricing, GST-compliant, fast delivery."
                 canonical={SITE_INFO.url + '/'}
-                keywords="web development company India, app development India, ecommerce India, AI integration India, custom software India, Codemistry"
+                keywords="web development company India, AI chatbot India, WhatsApp business API integration India, app development India, ecommerce development India, custom CRM India, vibe coding India, agentic AI India, AI automation for small business India, website development for small business India"
                 jsonLd={[
                     organizationLd(),
                     localBusinessLd(),
@@ -241,13 +243,33 @@ const Home = () => {
             {/* 1. HERO BANNER                                 */}
             {/* ═══════════════════════════════════════════════ */}
             <section className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden">
-                {/* Background image with slow zoom */}
+                {/* Background image — responsive sizes, WebP, preloaded */}
                 <div className="absolute inset-0">
-                    <img
-                        src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1800&q=80"
-                        alt="Team working"
-                        className="w-full h-full object-cover hero-bg-zoom"
-                    />
+                    <picture>
+                        <source
+                            media="(max-width: 767px)"
+                            srcSet="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=75&fm=webp"
+                            type="image/webp"
+                        />
+                        <source
+                            media="(max-width: 767px)"
+                            srcSet="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=75"
+                        />
+                        <source
+                            media="(min-width: 768px)"
+                            srcSet="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1400&q=80&fm=webp"
+                            type="image/webp"
+                        />
+                        <img
+                            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1400&q=80"
+                            alt="Codemistry team working on web and app development"
+                            className="w-full h-full object-cover hero-bg-zoom"
+                            fetchPriority="high"
+                            decoding="async"
+                            width="1400"
+                            height="933"
+                        />
+                    </picture>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-charcoal-950/95 via-charcoal-950/80 to-charcoal-950/50"></div>
 
@@ -270,7 +292,7 @@ const Home = () => {
                             </h1>
 
                             <p className="text-base sm:text-lg text-white/65 max-w-lg mb-8 sm:mb-10 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                                We build websites, mobile apps, CRM systems &amp; AI solutions that help Indian businesses scale faster and serve customers better.
+                                We build websites, mobile apps, AI chatbots, WhatsApp automation &amp; custom CRM for Indian businesses — fast delivery, INR pricing, GST-compliant.
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
@@ -332,7 +354,15 @@ const Home = () => {
                 <div className="marquee-track">
                     {[...techLogos, ...techLogos].map((tech, i) => (
                         <div key={i} className="mx-5 sm:mx-9 flex items-center gap-2.5 whitespace-nowrap select-none shrink-0">
-                            <img src={tech.logo} alt={tech.name} className="w-7 h-7 sm:w-8 sm:h-8" />
+                            <img
+                                src={tech.logo}
+                                alt={tech.name}
+                                width="32"
+                                height="32"
+                                loading="lazy"
+                                decoding="async"
+                                className="w-7 h-7 sm:w-8 sm:h-8"
+                            />
                             <span className="text-charcoal-500 font-display font-semibold text-xs sm:text-sm">{tech.name}</span>
                         </div>
                     ))}
@@ -355,12 +385,12 @@ const Home = () => {
                     </div>
                     <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 stagger-children">
                         {[
-                            { icon: Globe, title: 'Web Development', desc: 'Modern, fast, SEO-ready websites.', iconBg: 'from-orange-500 to-amber-500', border: 'hover:border-orange-200', badge: 'bg-orange-50 text-orange-600' },
-                            { icon: Smartphone, title: 'App Development', desc: 'iOS & Android apps that scale.', iconBg: 'from-emerald-500 to-teal-500', border: 'hover:border-emerald-200', badge: 'bg-emerald-50 text-emerald-600' },
-                            { icon: Database, title: 'Custom CRM', desc: 'Tailored systems for your workflow.', iconBg: 'from-violet-500 to-purple-500', border: 'hover:border-violet-200', badge: 'bg-violet-50 text-violet-600' },
-                            { icon: Brain, title: 'AI Integration', desc: 'Smart automation & chatbots.', iconBg: 'from-sky-500 to-cyan-500', border: 'hover:border-sky-200', badge: 'bg-sky-50 text-sky-600' },
-                            { icon: Layers, title: 'Website Management', desc: 'Hosting, updates & maintenance.', iconBg: 'from-rose-500 to-pink-500', border: 'hover:border-rose-200', badge: 'bg-rose-50 text-rose-600' },
-                            { icon: RefreshCcw, title: 'Website Updation', desc: 'Modernize your legacy site.', iconBg: 'from-amber-500 to-yellow-500', border: 'hover:border-amber-200', badge: 'bg-amber-50 text-amber-600' },
+                            { icon: Globe, title: 'Web Development', desc: 'Mobile-first, SEO-ready websites with Razorpay & UPI.', iconBg: 'from-orange-500 to-amber-500', border: 'hover:border-orange-200', badge: 'bg-orange-50 text-orange-600' },
+                            { icon: Smartphone, title: 'App Development', desc: 'iOS & Android apps — React Native & Flutter.', iconBg: 'from-emerald-500 to-teal-500', border: 'hover:border-emerald-200', badge: 'bg-emerald-50 text-emerald-600' },
+                            { icon: Database, title: 'Custom CRM', desc: 'Tailored CRM with GST & Tally integration.', iconBg: 'from-violet-500 to-purple-500', border: 'hover:border-violet-200', badge: 'bg-violet-50 text-violet-600' },
+                            { icon: Brain, title: 'AI & WhatsApp Chatbots', desc: 'AI agents, chatbots & WhatsApp Business API.', iconBg: 'from-sky-500 to-cyan-500', border: 'hover:border-sky-200', badge: 'bg-sky-50 text-sky-600' },
+                            { icon: Layers, title: 'Website Management', desc: 'Hosting, updates, security & maintenance.', iconBg: 'from-rose-500 to-pink-500', border: 'hover:border-rose-200', badge: 'bg-rose-50 text-rose-600' },
+                            { icon: RefreshCcw, title: 'Website Updation', desc: 'Modernize legacy sites — speed & SEO overhaul.', iconBg: 'from-amber-500 to-yellow-500', border: 'hover:border-amber-200', badge: 'bg-amber-50 text-amber-600' },
                         ].map((s, i) => {
                             const Icon = s.icon;
                             return (
@@ -641,7 +671,7 @@ const Home = () => {
                                     Insights for Indian Businesses
                                 </h2>
                                 <p className="mt-2 text-charcoal-500 max-w-2xl text-sm sm:text-base">
-                                    Practical guides on web & app development cost in India, e-commerce setup, AI integration and more.
+                                    Practical guides on web development cost India, AI chatbot setup, WhatsApp automation, vibe coding, e-commerce & more — for Indian business owners.
                                 </p>
                             </div>
                             <Link
