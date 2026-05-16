@@ -5,10 +5,10 @@ import {
     ArrowRight, Globe, Smartphone, Database, Brain, Layers, RefreshCcw,
     ChevronRight, ChevronLeft, Users, Code2, Cpu, Palette, Quote, Star,
     Briefcase, Trophy, Clock, TrendingUp, Monitor, Server, RefreshCw,
-    BookOpen, Calendar
+    BookOpen, Calendar, ChevronDown
 } from 'lucide-react';
 import Seo from '../components/Seo';
-import { organizationLd, localBusinessLd, SITE_INFO } from '../seo/structuredData';
+import { organizationLd, localBusinessLd, websiteLd, faqPageLd, SITE_INFO } from '../seo/structuredData';
 
 /* ─── Scroll Reveal Hook ─── */
 const useScrollReveal = () => {
@@ -127,6 +127,58 @@ const testimonials = [
     { name: 'Amit Verma', role: 'Managing Director, BuildSmart Infra', text: 'From concept to launch in just 6 weeks! Codemistry delivered a polished mobile app that our field engineers love. Their ongoing support and quick response time has been exceptional.', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&q=80', rating: 5 },
 ];
 
+/* ─── FAQ Data (drives both UI + FAQPage JSON-LD rich snippet) ─── */
+const HOME_FAQS = [
+    {
+        question: 'How much does a website cost in India?',
+        answer: 'A basic business website starts from ₹8,000–₹25,000. A custom web application or e-commerce store typically ranges from ₹30,000–₹1,50,000 depending on features, design complexity, and integrations. Codemistry offers transparent INR pricing with no hidden charges.',
+    },
+    {
+        question: 'How long does it take to build a website or app?',
+        answer: 'A standard business website takes 1–2 weeks. A custom web application or e-commerce platform takes 3–8 weeks. Mobile apps (iOS/Android) generally take 6–12 weeks. We share weekly demos so you always know the progress.',
+    },
+    {
+        question: 'Do you work with startups and small businesses in India?',
+        answer: 'Yes. Most of our clients are Indian startups, SMBs, and solo founders. We offer flexible payment plans, GST-compliant invoicing, and milestone-based billing to make quality development accessible.',
+    },
+    {
+        question: 'What technologies do you use for web and app development?',
+        answer: 'We use React, Next.js, and Laravel for web; Flutter and React Native for mobile apps; Node.js and Python for backend services; and AWS/VPS for hosting. All code is clean, scalable, and fully owned by you.',
+    },
+    {
+        question: 'Can you redesign or update my existing website?',
+        answer: 'Absolutely. We handle website redesigns, CMS migrations, speed optimizations, and ongoing maintenance. We can modernize any legacy site to meet current SEO and performance standards.',
+    },
+    {
+        question: 'Do you provide website maintenance after launch?',
+        answer: 'Yes. We offer monthly maintenance plans starting from ₹2,000/month covering security updates, content changes, backups, uptime monitoring, and priority support.',
+    },
+];
+
+/* ─── FAQ Accordion ─── */
+const FaqAccordion = ({ faqs }) => {
+    const [open, setOpen] = useState(null);
+    return (
+        <div className="divide-y divide-charcoal-100">
+            {faqs.map((faq, i) => (
+                <div key={i}>
+                    <button
+                        onClick={() => setOpen(open === i ? null : i)}
+                        className="w-full flex items-center justify-between gap-4 py-5 text-left"
+                        aria-expanded={open === i}
+                    >
+                        <span className="text-base sm:text-lg font-display font-semibold text-charcoal-900">{faq.question}</span>
+                        <ChevronDown className={`w-5 h-5 text-brand-500 shrink-0 transition-transform duration-300 ${open === i ? 'rotate-180' : ''}`} />
+                    </button>
+                    {open === i && (
+                        <p className="pb-5 text-charcoal-600 text-sm sm:text-base leading-relaxed">{faq.answer}</p>
+                    )}
+                </div>
+            ))}
+        </div>
+    );
+};
+
 const Home = () => {
     useScrollReveal();
     const registerParallax = useParallax();
@@ -214,8 +266,8 @@ const Home = () => {
                 title="Web & App Development Company in India — Affordable, On-Time"
                 description="Codemistry is an India-based web & app development company. Affordable INR pricing, GST-compliant, AI integrations, e-commerce, and more — for businesses across India."
                 canonical={SITE_INFO.url + '/'}
-                keywords="web development company India, app development India, ecommerce India, AI integration India, custom software India, Codemistry"
-                jsonLd={[organizationLd(), localBusinessLd()]}
+                keywords="web development company India, app development India, ecommerce India, AI integration India, custom software India, hire web developer India, website development cost India, Codemistry"
+                jsonLd={[organizationLd(), localBusinessLd(), websiteLd(), faqPageLd(HOME_FAQS)]}
             />
 
             {/* ═══════════════════════════════════════════════ */}
@@ -666,7 +718,27 @@ const Home = () => {
             )}
 
             {/* ═══════════════════════════════════════════════ */}
-            {/* 8. CTA                                         */}
+            {/* 8. FAQ                                         */}
+            {/* ═══════════════════════════════════════════════ */}
+            <section className="py-16 sm:py-24 px-5 sm:px-6 lg:px-10 bg-white">
+                <div className="max-w-3xl mx-auto">
+                    <div className="text-center mb-10 reveal">
+                        <p className="text-brand-600 font-semibold text-xs sm:text-sm tracking-wide uppercase mb-2">FAQ</p>
+                        <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-charcoal-950">Common Questions</h2>
+                        <p className="text-charcoal-500 mt-3 text-sm sm:text-base">Everything you need to know before starting your project with us.</p>
+                    </div>
+                    <div className="bg-white border border-charcoal-100 rounded-2xl px-5 sm:px-8 shadow-sm">
+                        <FaqAccordion faqs={HOME_FAQS} />
+                    </div>
+                    <p className="text-center mt-6 text-sm text-charcoal-500">
+                        More questions?{' '}
+                        <Link to="/contact" className="text-brand-600 font-semibold hover:underline">Talk to our team →</Link>
+                    </p>
+                </div>
+            </section>
+
+            {/* ═══════════════════════════════════════════════ */}
+            {/* 9. CTA                                         */}
             {/* ═══════════════════════════════════════════════ */}
             <section className="px-4 sm:px-6 lg:px-10 py-16 sm:py-24">
                 <div className="relative w-full max-w-7xl mx-auto rounded-[2.5rem] bg-charcoal-950 overflow-hidden shadow-2xl group min-h-[500px] flex flex-col lg:flex-row items-center justify-between px-6 sm:px-12 md:px-16 py-16 sm:py-24 border border-charcoal-800 gap-12 lg:gap-8">

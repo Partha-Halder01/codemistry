@@ -106,3 +106,25 @@ export const itemListLd = (items) => ({
         url: it.url,
     })),
 });
+
+export const websiteLd = () => ({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE.name,
+    url: SITE.url,
+    potentialAction: {
+        '@type': 'SearchAction',
+        target: { '@type': 'EntryPoint', urlTemplate: `${SITE.url}/blog?search={search_term_string}` },
+        'query-input': 'required name=search_term_string',
+    },
+});
+
+export const faqPageLd = (faqs) => ({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(({ question, answer }) => ({
+        '@type': 'Question',
+        name: question,
+        acceptedAnswer: { '@type': 'Answer', text: answer },
+    })),
+});

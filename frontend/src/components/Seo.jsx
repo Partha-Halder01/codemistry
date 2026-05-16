@@ -14,6 +14,9 @@ const Seo = ({
     type = 'website',
     jsonLd,
     noIndex = false,
+    author,
+    publishedTime,
+    modifiedTime,
 }) => {
     const fullTitle = title
         ? `${title} | ${SITE_INFO.name}`
@@ -30,7 +33,8 @@ const Seo = ({
             <title>{fullTitle}</title>
             <meta name="description" content={description} />
             {keywords && <meta name="keywords" content={keywords} />}
-            <meta name="robots" content={noIndex ? 'noindex,nofollow' : 'index,follow'} />
+            {author && <meta name="author" content={author} />}
+            <meta name="robots" content={noIndex ? 'noindex,nofollow' : 'index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1'} />
             <link rel="canonical" href={url} />
             <link rel="alternate" hrefLang="en-in" href={url} />
             <link rel="alternate" hrefLang="x-default" href={url} />
@@ -47,8 +51,13 @@ const Seo = ({
             <meta property="og:description" content={description} />
             <meta property="og:url" content={url} />
             <meta property="og:image" content={image} />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
             <meta property="og:site_name" content={SITE_INFO.name} />
             <meta property="og:locale" content="en_IN" />
+            {type === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime} />}
+            {type === 'article' && modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+            {type === 'article' && author && <meta property="article:author" content={author} />}
 
             {/* Twitter */}
             <meta name="twitter:card" content="summary_large_image" />

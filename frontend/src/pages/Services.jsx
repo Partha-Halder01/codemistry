@@ -47,10 +47,10 @@ const Services = () => {
     return (
         <div className="min-h-screen bg-white">
             <Seo
-                title="Our Services — Web, App, AI & E-commerce in India"
-                description="Codemistry offers web development, mobile apps, e-commerce stores, AI integration and custom software for Indian businesses. Transparent INR pricing."
+                title="Web & App Development Services in India — Transparent INR Pricing"
+                description="Hire Codemistry for web development, mobile apps, e-commerce, AI integration and custom CRM — affordable INR pricing, GST invoice, on-time delivery for Indian businesses."
                 canonical={SITE_INFO.url + '/services'}
-                keywords="web development India, app development India, ecommerce India, AI integration India, custom software services India"
+                keywords="web development services India, hire web developer India, app development company India, ecommerce website development India, AI integration service India, custom software India, website cost India"
                 jsonLd={[
                     organizationLd(),
                     breadcrumbLd([
@@ -64,12 +64,18 @@ const Services = () => {
             {/* ── Compact Header ── */}
             <section className="pt-24 pb-8 px-5 bg-white">
                 <div className="max-w-4xl mx-auto text-center">
+                    <span className="inline-block px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-xs font-bold tracking-wider uppercase mb-4">Web &amp; App Development India</span>
                     <h1 className="text-4xl md:text-5xl font-display font-extrabold text-charcoal-950 leading-tight mb-4">
-                        Our Services
+                        Development Services for Indian Businesses
                     </h1>
                     <p className="text-charcoal-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-                        End-to-end digital solutions crafted to accelerate your business growth.
+                        Affordable websites, mobile apps, e-commerce stores and AI solutions — transparent INR pricing, GST invoice, and on-time delivery guaranteed.
                     </p>
+                    <div className="mt-5 flex flex-wrap justify-center gap-3 text-xs text-charcoal-500">
+                        {['✓ Transparent INR Pricing', '✓ GST Invoice Provided', '✓ On-Time Delivery', '✓ Free Consultation'].map(b => (
+                            <span key={b} className="px-3 py-1.5 bg-charcoal-50 border border-charcoal-100 rounded-full font-medium">{b}</span>
+                        ))}
+                    </div>
                 </div>
             </section>
 

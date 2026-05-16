@@ -1,10 +1,16 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { Calendar, User, Tag, ArrowLeft, Loader2, Share2 } from 'lucide-react';
+import { Calendar, User, Tag, ArrowLeft, Loader2, Share2, Clock } from 'lucide-react';
 import api from '../api';
 import Seo from '../components/Seo';
 import { sanitizeBlogHtml, scopeBlogCss } from '../utils/sanitizeBlog';
 import { articleLd, breadcrumbLd, organizationLd, SITE_INFO } from '../seo/structuredData';
+
+const calcReadingTime = (html = '') => {
+    const text = html.replace(/<[^>]+>/g, ' ');
+    const words = text.trim().split(/\s+/).length;
+    return Math.max(1, Math.round(words / 200));
+};
 
 const formatDate = (d) => {
     if (!d) return '';
@@ -87,6 +93,9 @@ const BlogPostPage = () => {
                 ogImage={post.cover_image_url || undefined}
                 keywords={post.meta_keywords || (Array.isArray(post.tags) ? post.tags.join(', ') : '')}
                 type="article"
+                author={post.author_name || 'Codemistry Team'}
+                publishedTime={post.published_at}
+                modifiedTime={post.updated_at || post.published_at}
                 jsonLd={[
                     organizationLd(),
                     breadcrumbLd([
@@ -116,7 +125,8 @@ const BlogPostPage = () => {
 
                     <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-charcoal-500">
                         <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" /> {formatDate(post.published_at)}</span>
-                        <span className="flex items-center gap-1.5"><User className="w-4 h-4" /> {post.author_name}</span>
+                        <span className="flex items-center gap-1.5"><User className="w-4 h-4" /> {post.author_name || 'Codemistry Team'}</span>
+                        <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> {calcReadingTime(post.content_html)} min read</span>
                         {Array.isArray(post.tags) && post.tags.map((t) => (
                             <Link key={t} to={`/blog?tag=${encodeURIComponent(t)}`} className="text-[12px] px-2 py-0.5 bg-brand-50 text-brand-700 rounded-full hover:bg-brand-100">
                                 <Tag className="w-2.5 h-2.5 inline -mt-0.5 mr-1" />{t}
@@ -140,12 +150,30 @@ const BlogPostPage = () => {
                 />
 
                 <div className="mt-14 pt-8 border-t border-charcoal-100">
-                    <div className="bg-brand-50/60 border border-brand-100 rounded-2xl p-6 text-center">
-                        <h3 className="font-display font-bold text-xl text-charcoal-900">Need help with your project?</h3>
-                        <p className="text-charcoal-600 mt-2 text-sm">Codemistry builds web, app and AI products for businesses across India.</p>
-                        <Link to="/contact" className="inline-flex items-center gap-2 mt-4 px-5 py-3 bg-brand-500 hover:bg-brand-600 text-white rounded-xl text-sm font-semibold">
-                            Get a free quote
-                        </Link>
+                    <div className="bg-gradient-to-br from-brand-50 to-emerald-50 border border-brand-100 rounded-2xl p-6 sm:p-8">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-6">
+                            <div className="flex-1">
+                                <h3 className="font-display font-bold text-xl text-charcoal-900">Ready to build your project?</h3>
+                                <p className="text-charcoal-600 mt-1 text-sm leading-relaxed">
+                                    Codemistry builds websites, mobile apps, e-commerce stores and AI integrations for Indian businesses — on time, on budget, in INR.
+                                </p>
+                                <div className="mt-3 flex flex-wrap gap-2 text-xs">
+                                    {[
+                                        { label: 'Web Development', to: '/services' },
+                                        { label: 'Mobile Apps', to: '/services' },
+                                        { label: 'E-commerce', to: '/services' },
+                                        { label: 'AI Integration', to: '/services' },
+                                    ].map(s => (
+                                        <Link key={s.label} to={s.to} className="px-2.5 py-1 bg-white border border-brand-200 text-brand-700 rounded-full hover:bg-brand-100 transition-colors">
+                                            {s.label}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                            <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white rounded-xl text-sm font-semibold whitespace-nowrap transition-colors">
+                                Get a free quote →
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </article>

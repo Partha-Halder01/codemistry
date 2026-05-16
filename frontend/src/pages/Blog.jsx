@@ -1,9 +1,20 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { Calendar, User, Search, Tag, ArrowRight, Loader2 } from 'lucide-react';
+import { Calendar, User, Search, Tag, ArrowRight, Loader2, TrendingUp } from 'lucide-react';
 import api from '../api';
 import Seo from '../components/Seo';
-import { breadcrumbLd, organizationLd, SITE_INFO } from '../seo/structuredData';
+import { breadcrumbLd, organizationLd, websiteLd, SITE_INFO } from '../seo/structuredData';
+
+const TOPIC_CLUSTERS = [
+    { label: 'Website Cost India', tag: 'website-cost' },
+    { label: 'App Development', tag: 'app-development' },
+    { label: 'E-commerce', tag: 'ecommerce' },
+    { label: 'AI Integration', tag: 'ai' },
+    { label: 'GST & Compliance', tag: 'gst' },
+    { label: 'SEO Tips', tag: 'seo' },
+    { label: 'Web Development', tag: 'web-development' },
+    { label: 'Startup Guide', tag: 'startup' },
+];
 
 const formatDate = (d) => {
     if (!d) return '';
@@ -84,9 +95,10 @@ const Blog = () => {
                 title="Blog — Web, App & AI Insights for Indian Businesses"
                 description="Practical guides on web development cost in India, mobile app pricing, e-commerce setup with Razorpay & UPI, GST-compliant invoicing, and AI integration for Indian startups."
                 canonical={canonical}
-                keywords="web development India blog, app development India, AI integration India, ecommerce India guide"
+                keywords="web development India blog, app development cost India, AI integration India, ecommerce website India, hire web developer India, website development guide"
                 jsonLd={[
                     organizationLd(),
+                    websiteLd(),
                     breadcrumbLd([
                         { name: 'Home', url: SITE_INFO.url + '/' },
                         { name: 'Blog', url: canonical },
@@ -133,6 +145,27 @@ const Blog = () => {
                                 >Clear filters</button>
                             </div>
                         )}
+
+                        <div className="mt-6">
+                            <p className="text-xs text-charcoal-400 font-semibold uppercase tracking-wider mb-3 flex items-center gap-1.5 justify-center">
+                                <TrendingUp className="w-3.5 h-3.5" /> Popular Topics
+                            </p>
+                            <div className="flex flex-wrap gap-2 justify-center">
+                                {TOPIC_CLUSTERS.map(t => (
+                                    <button
+                                        key={t.tag}
+                                        onClick={() => setTag(t.tag)}
+                                        className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
+                                            activeTag === t.tag
+                                                ? 'bg-brand-500 text-white border-brand-500'
+                                                : 'bg-white text-charcoal-700 border-charcoal-200 hover:border-brand-400 hover:text-brand-600'
+                                        }`}
+                                    >
+                                        {t.label}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
