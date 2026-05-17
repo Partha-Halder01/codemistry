@@ -28,11 +28,22 @@ const inlineCriticalCss = () => ({
 export default defineConfig({
   plugins: [react(), inlineCriticalCss()],
   build: {
+    // Disable Vite's automatic modulepreload polyfill emission so the markdown/oauth
+    // chunks (only used on lazy routes) don't get preloaded on the homepage.
+    modulePreload: {
+      polyfill: false,
+      // Only preload the entry's direct synchronous deps, not the entire reachable graph.
+      resolveDependencies: (_filename, deps) => deps.filter((d) =>
+        !/markdown|oauth/i.test(d)
+      ),
+    },
     rollupOptions: {
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'ui-vendor': ['lucide-react'],
+          // markdown stays a manual chunk so it can be shared between Chatbot and AiSupport,
+          // but resolveDependencies above keeps it out of the entry preload list.
           'markdown': ['react-markdown', 'dompurify'],
           'seo': ['react-helmet-async'],
           'oauth': ['@react-oauth/google'],
