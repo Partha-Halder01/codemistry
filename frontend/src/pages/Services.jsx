@@ -47,10 +47,10 @@ const Services = () => {
     return (
         <div className="min-h-screen bg-white">
             <Seo
-                title="Our Services — Web, App, AI & E-commerce in India"
-                description="Codemistry offers web development, mobile apps, e-commerce stores, AI integration and custom software for Indian businesses. Transparent INR pricing."
+                title="Our Services — Web, App, AI Chatbots & WhatsApp Automation India"
+                description="Codemistry offers website development, mobile apps (React Native & Flutter), AI chatbots, WhatsApp Business API, Gemini AI integration, custom CRM, e-commerce with ONDC, and more — all priced in INR."
                 canonical={SITE_INFO.url + '/services'}
-                keywords="web development India, app development India, ecommerce India, AI integration India, custom software services India"
+                keywords="web development India, AI chatbot India, WhatsApp business API India, progressive web app India, Gemini AI integration India, React Native app development India, Flutter app India, ONDC integration India, custom CRM India, ecommerce website design India, SaaS MVP development India, website redesign India, no-code low-code India, AI agent development India"
                 jsonLd={[
                     organizationLd(),
                     breadcrumbLd([

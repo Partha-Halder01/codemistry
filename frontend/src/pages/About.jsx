@@ -91,6 +91,7 @@ const About = () => {
                 title="About Codemistry — An India-Based Web & App Development Team"
                 description="Learn about Codemistry — an India-based team building affordable web, mobile and AI products for businesses across India. Quality assured, on-time delivery."
                 canonical={SITE_INFO.url + '/about'}
+                keywords="web development company India, AI integration agency India, WhatsApp chatbot development India, Gemini AI integration India, progressive web app India, best web developers India, IT company West Bengal India"
                 jsonLd={[
                     organizationLd(),
                     breadcrumbLd([

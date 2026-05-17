@@ -379,6 +379,93 @@ HTML
 HTML
             ],
             [
+                'title'   => 'Progressive Web Apps (PWA) for Indian Businesses: Complete 2026 Guide',
+                'excerpt' => 'What is a PWA, why Indian businesses are choosing them over native apps, and how to decide if a Progressive Web App is right for your audience — with INR cost ranges and real examples.',
+                'meta_title' => 'Progressive Web Apps (PWA) India 2026: Complete Guide | Codemistry',
+                'meta_description' => 'What is a Progressive Web App and should your Indian business build one? PWA vs native app comparison, India-specific benefits, INR costs, and real examples.',
+                'meta_keywords' => 'progressive web app India, PWA development India, PWA vs mobile app India, best PWA developers India 2026, PWA cost India',
+                'tags' => ['PWA', 'Web Development', 'India', 'Mobile', 'App Development'],
+                'author_name' => 'Codemistry Team',
+                'published_at' => $now->copy()->subDays(3),
+                'content_css' => '.lede{font-size:1.05rem;color:#374151;line-height:1.7}h2{margin-top:1.6rem}h3{margin-top:1.2rem}table{width:100%;border-collapse:collapse;margin:18px 0}th,td{padding:10px 12px;border:1px solid #e5e7eb;text-align:left;font-size:.95rem}th{background:#f3f4f6;font-weight:700}.stat{background:#ecfdf5;border:1px solid #a7f3d0;padding:14px 18px;border-radius:10px;margin:14px 0}.note{background:#fff7ed;border:1px solid #fed7aa;padding:12px 16px;border-radius:8px;margin:14px 0}',
+                'content_html' => <<<'HTML'
+<p class="lede">A <strong>Progressive Web App (PWA)</strong> is a website that behaves like a native mobile app — installable on a phone's home screen, works offline, sends push notifications, and loads in under 2 seconds even on 4G. For Indian businesses targeting users on budget smartphones, PWAs are often the smartest investment in 2026.</p>
+
+<h2>What Makes a PWA Different from a Regular Website?</h2>
+<ul>
+  <li><strong>Installable</strong> — users can add it to their home screen without visiting the Play Store or App Store</li>
+  <li><strong>Works offline</strong> — a service worker caches key pages so the app loads even without internet</li>
+  <li><strong>Push notifications</strong> — re-engage users just like a native app, no app store needed</li>
+  <li><strong>Fast</strong> — pre-caching and smart loading strategies make PWAs 2–5× faster than equivalent native apps on slow connections</li>
+  <li><strong>Secure</strong> — served over HTTPS, pass modern browser security requirements</li>
+</ul>
+
+<h2>Why PWAs Make Sense for the Indian Market</h2>
+
+<div class="stat">
+  <strong>India-specific reality:</strong> ~65% of Indian smartphone users are on entry-level devices with 2–4GB RAM. A 100MB native app competes with WhatsApp, YouTube, and Chrome for limited storage. A PWA has zero install barrier.
+</div>
+
+<p>Here is what some of India's biggest brands achieved with PWAs:</p>
+<ul>
+  <li><strong>Flipkart Lite (PWA):</strong> 70% increase in conversions from the home screen install prompt</li>
+  <li><strong>OLX India:</strong> 146% more page views per visit compared to their previous mobile site</li>
+  <li><strong>Myntra:</strong> 40% reduction in bounce rate after PWA launch</li>
+  <li><strong>MakeMyTrip:</strong> 3× lower page load times on 3G connections</li>
+</ul>
+
+<h2>PWA vs Native App: India 2026 Comparison</h2>
+<table>
+<thead><tr><th>Factor</th><th>Native App (iOS + Android)</th><th>Progressive Web App</th></tr></thead>
+<tbody>
+<tr><td>Build cost (India)</td><td>₹2,00,000 – ₹10,00,000+</td><td>₹40,000 – ₹2,00,000</td></tr>
+<tr><td>Time to launch</td><td>8–16 weeks</td><td>3–6 weeks</td></tr>
+<tr><td>Play Store / App Store approval</td><td>Required (1–7 days)</td><td>Not required</td></tr>
+<tr><td>Storage on device</td><td>30–200MB</td><td>~5MB (cached)</td></tr>
+<tr><td>Updates</td><td>User must download update</td><td>Instant (service worker)</td></tr>
+<tr><td>Offline functionality</td><td>Full</td><td>Partial (cached pages)</td></tr>
+<tr><td>Push notifications</td><td>Yes</td><td>Yes (on Android; limited on iOS 16.4+)</td></tr>
+<tr><td>Hardware access (camera, GPS)</td><td>Full</td><td>Good (modern browsers)</td></tr>
+<tr><td>SEO</td><td>Not applicable</td><td>Indexed by Google</td></tr>
+<tr><td>Discoverability</td><td>Play Store / App Store</td><td>Google Search + direct URL</td></tr>
+</tbody>
+</table>
+
+<h2>When Should an Indian Business Build a PWA?</h2>
+<ul>
+  <li>Your users are on Android (87% of India's smartphone market — PWA works best on Android)</li>
+  <li>Your budget is under ₹2,00,000 and you need both web + app experience</li>
+  <li>You want to launch fast — a PWA can go live in 3–6 weeks vs. 3–4 months for dual native apps</li>
+  <li>Your primary use case is browsing, ordering, or consuming content (not heavy gaming or AR)</li>
+  <li>You want SEO — native apps are invisible to Google; PWAs are fully indexed</li>
+</ul>
+
+<h2>When a Native App is Still the Right Choice</h2>
+<ul>
+  <li>You need deep hardware integration (Bluetooth, AR Kit, offline maps with large datasets)</li>
+  <li>Your users are primarily on iOS and require full push notification support</li>
+  <li>App Store presence is a business requirement (fintech, healthcare where credibility matters)</li>
+  <li>You need background processes running continuously</li>
+</ul>
+
+<div class="note"><strong>iOS note:</strong> Apple added PWA install support in Safari 16.4 (2023) and push notifications in iOS 16.4+. PWA support on iOS has improved significantly — but Android still gives a better PWA experience in 2026.</div>
+
+<h2>How Much Does a PWA Cost in India?</h2>
+<p>A basic PWA (installable, offline-ready, 10–20 pages) built by an Indian agency in 2026 typically costs <strong>₹40,000 – ₹1,20,000</strong>. A full-featured PWA with a custom backend, real-time sync, push notifications, and payment integration ranges from <strong>₹1,20,000 – ₹2,50,000</strong>.</p>
+<p>Compare that to ₹3–8 lakh for equivalent React Native + iOS + Android builds. For most Indian SMBs, a high-quality PWA delivers 80% of the native app experience at 20–30% of the cost.</p>
+
+<h2>Technical Stack Codemistry Uses for PWAs</h2>
+<ul>
+  <li><strong>Frontend:</strong> React + Vite (or Next.js for SSR/SEO-heavy PWAs)</li>
+  <li><strong>Service Worker:</strong> Workbox for caching strategies</li><li><strong>Manifest:</strong> Web App Manifest for install prompt and home screen icon</li>
+  <li><strong>Push:</strong> Firebase Cloud Messaging (FCM) for cross-platform push notifications</li>
+  <li><strong>Backend:</strong> Laravel REST API, deployed on a VPS or cloud</li>
+</ul>
+
+<p>Ready to launch a PWA for your Indian business? <a href="/contact">Talk to us</a> — we'll give you an honest recommendation on whether a PWA, native app, or hybrid approach fits your specific requirements and budget.</p>
+HTML
+            ],
+            [
                 'title'   => 'AI Integration for Indian Startups: Use Cases & Costs in 2026',
                 'excerpt' => 'Practical AI use cases Indian founders are actually shipping in 2026 — chatbots, document automation, lead scoring — with real INR cost ranges and ROI examples.',
                 'meta_title' => 'AI Integration for Indian Startups in 2026: Use Cases & Costs',
@@ -437,6 +524,97 @@ HTML
 </ul>
 
 <p>Want AI in your product without burning capital? <a href="/services">See our AI integration service</a> or <a href="/contact">tell us what you want to automate</a>.</p>
+HTML
+            ],
+        ];
+
+            [
+                'title'   => 'How to Integrate Google Gemini AI Into Your Indian Business Website (2026)',
+                'excerpt' => 'A practical guide to integrating Google Gemini AI — chatbots, multilingual support, document automation — into Indian business websites and apps, with real INR costs and model selection tips.',
+                'meta_title' => 'Gemini AI Integration India 2026: Complete Guide | Codemistry',
+                'meta_description' => 'How to integrate Google Gemini AI into your Indian business website or app. Gemini Flash vs Pro, multilingual support, INR pricing, and real use cases for Indian SMBs.',
+                'meta_keywords' => 'Gemini AI integration India, Google Gemini chatbot India, AI integration website India, Gemini API India, multilingual AI India, Gemini Flash India',
+                'tags' => ['AI', 'Gemini AI', 'India', 'Chatbot', 'Integration'],
+                'author_name' => 'Codemistry Team',
+                'published_at' => $now->copy()->subDays(1),
+                'content_css' => '.lede{font-size:1.05rem;color:#374151;line-height:1.7}h2{margin-top:1.6rem}h3{margin-top:1.2rem}table{width:100%;border-collapse:collapse;margin:18px 0}th,td{padding:10px 12px;border:1px solid #e5e7eb;text-align:left;font-size:.95rem}th{background:#f3f4f6;font-weight:700}.tip{background:#f0f9ff;border:1px solid #bae6fd;padding:14px 18px;border-radius:10px;margin:14px 0}.usecase{background:#ecfdf5;border:1px solid #a7f3d0;padding:14px 18px;border-radius:10px;margin:14px 0}',
+                'content_html' => <<<'HTML'
+<p class="lede">Google Gemini launched in India in early 2026 with support for 50+ languages — including Hindi, Bengali, Tamil, Telugu, Marathi, and Gujarati. For Indian businesses, this changes the economics of AI: you can now build multilingual customer-facing AI at a fraction of what GPT-4 used to cost. Here is how to integrate it into your website or business software.</p>
+
+<h2>What is Google Gemini AI?</h2>
+<p>Gemini is Google's flagship AI model family, available via the Google AI Studio and Vertex AI APIs. It comes in several versions optimised for different use cases:</p>
+
+<table>
+<thead><tr><th>Model</th><th>Best For</th><th>Approx. Cost (per 1M tokens)</th></tr></thead>
+<tbody>
+<tr><td>Gemini Flash 2.0</td><td>High-volume chatbots, classification, quick Q&A</td><td>~$0.10 input / $0.40 output</td></tr>
+<tr><td>Gemini Flash 2.0 Thinking</td><td>Step-by-step reasoning, complex queries</td><td>~$3.50 input / $10.50 output</td></tr>
+<tr><td>Gemini Pro 2.5</td><td>Long-context documents, code generation, complex analysis</td><td>~$1.25 input / $10.00 output</td></tr>
+</tbody>
+</table>
+
+<p>For most Indian SMB use cases — customer chatbots, FAQ automation, lead qualification — <strong>Gemini Flash 2.0</strong> is the right default: it is fast, cheap, and supports all major Indian languages out of the box.</p>
+
+<h2>Why Gemini Over GPT-4o for Indian Businesses?</h2>
+<ul>
+  <li><strong>Indian language quality:</strong> Google has trained on significantly more Indic language data than OpenAI. Hindi, Bengali, and Tamil responses from Gemini are noticeably more natural.</li>
+  <li><strong>Cost:</strong> Gemini Flash 2.0 is 5–10× cheaper than GPT-4o for comparable tasks</li>
+  <li><strong>Google integration:</strong> Native integration with Google Workspace, Google Maps, Google Analytics, and Android</li>
+  <li><strong>Grounding:</strong> Gemini can be grounded to real-time Google Search results, useful for products, news, or stock updates</li>
+  <li><strong>Multimodal:</strong> Processes text, images, audio, and video in one API call</li>
+</ul>
+
+<h2>5 Ways to Integrate Gemini Into Your Indian Business</h2>
+
+<div class="usecase">
+  <h3>1. Multilingual customer support chatbot</h3>
+  <p>Connect Gemini to your product catalogue and FAQ database. The chatbot answers in the customer's language — Hindi, English, Bengali — and hands off to a human agent when needed. Build cost: <strong>₹40,000 – ₹1,20,000</strong>. API cost: <strong>₹2,000 – ₹8,000/month</strong> for a typical Indian SMB volume.</p>
+</div>
+
+<div class="usecase">
+  <h3>2. WhatsApp AI assistant (via WhatsApp Business API)</h3>
+  <p>Combine Gemini with the WhatsApp Business API to create a conversational AI that your customers can reach on WhatsApp — no app download required. Handles orders, support, booking, and reminders at 98% open rate. Build cost: <strong>₹60,000 – ₹1,50,000</strong>.</p>
+</div>
+
+<div class="usecase">
+  <h3>3. GST document & invoice parser</h3>
+  <p>Use Gemini's multimodal capabilities to extract data from PDF invoices, purchase orders, and delivery challans. Drop a PDF, get structured JSON with vendor GSTIN, HSN codes, and line items — ready for your ERP. Build cost: <strong>₹80,000 – ₹2,50,000</strong>.</p>
+</div>
+
+<div class="usecase">
+  <h3>4. Lead qualification assistant</h3>
+  <p>When a lead fills your contact form, Gemini researches their company, scores buying intent, and routes high-intent leads directly to your sales team's WhatsApp. Build cost: <strong>₹50,000 – ₹1,20,000</strong>.</p>
+</div>
+
+<div class="usecase">
+  <h3>5. Internal knowledge assistant</h3>
+  <p>Upload your SOPs, HR policies, product manuals, and training docs. Employees ask questions in natural language — Gemini answers with citations. Massive time-saver for Indian companies with 50+ employees. Build cost: <strong>₹1,00,000 – ₹3,00,000</strong>.</p>
+</div>
+
+<h2>How to Get Started: Technical Overview</h2>
+<ol>
+  <li>Create a Google AI Studio account → generate an API key (free tier available for testing)</li>
+  <li>Install the official SDK: <code>npm install @google/generative-ai</code> (Node.js) or use the REST API from your Laravel backend</li>
+  <li>Ground your model on your business data using Retrieval-Augmented Generation (RAG) — store your docs in a vector database, retrieve relevant chunks at query time</li>
+  <li>Add guardrails: set system instructions to keep the model on-topic and safe for Indian regulatory context</li>
+  <li>Monitor cost-per-conversation from day one — set up billing alerts in Google Cloud</li>
+</ol>
+
+<div class="tip"><strong>Cost tip for Indian builders:</strong> Gemini Flash 2.0 costs roughly ₹0.008 per 1,000 output tokens. A typical customer chatbot conversation is 500–800 output tokens, meaning each conversation costs under ₹0.01. At 10,000 conversations per month, your API bill is under ₹100. That is genuinely cheap multilingual AI for India.</div>
+
+<h2>Gemini vs GPT-4o vs Claude — Which Should You Choose?</h2>
+<table>
+<thead><tr><th>Requirement</th><th>Recommended Model</th></tr></thead>
+<tbody>
+<tr><td>High-volume Hindi/Bengali chatbot</td><td>Gemini Flash 2.0</td></tr>
+<tr><td>Complex reasoning, long documents</td><td>Claude 3.5 Sonnet or Gemini Pro 2.5</td></tr>
+<tr><td>Code generation, developer tools</td><td>GPT-4o or Gemini Pro 2.5</td></tr>
+<tr><td>Real-time Google Search grounding</td><td>Gemini (only model with native Google Search)</td></tr>
+<tr><td>Cost-optimised general chatbot</td><td>Gemini Flash 2.0 or GPT-4o-mini</td></tr>
+</tbody>
+</table>
+
+<p>At Codemistry, we select the model that gives you the best accuracy-to-cost ratio for your specific use case — we are not locked to any single provider. <a href="/services">See our AI integration service</a> or <a href="/contact">tell us what you want to automate</a>.</p>
 HTML
             ],
         ];

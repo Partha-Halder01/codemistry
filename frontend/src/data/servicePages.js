@@ -9,6 +9,9 @@ export const serviceTypes = [
             `website design ${city}`,
             `web development cost ${city}`,
             `affordable website developers ${city}`,
+            `PWA development ${city}`,
+            `website redesign ${city}`,
+            `startup website development ${city}`,
         ],
         faqs: (city, priceNote) => [
             {
@@ -55,6 +58,9 @@ export const serviceTypes = [
             `AI development company ${city}`,
             `machine learning integration ${city}`,
             `AI automation for business ${city} India`,
+            `Gemini AI integration ${city}`,
+            `AI agent development ${city}`,
+            `WhatsApp chatbot development ${city}`,
         ],
         faqs: (city) => [
             {

@@ -29,9 +29,10 @@ const Contact = () => {
     return (
         <div className="min-h-screen bg-white pt-32 pb-24 px-4">
             <Seo
-                title="Contact Codemistry — Web & App Development in India"
+                title="Contact Codemistry — Web, App, AI & WhatsApp Automation Services India"
                 description="Talk to Codemistry about your web, app, e-commerce or AI project. India-based team, transparent INR pricing, and 24-hour response."
                 canonical={SITE_INFO.url + '/contact'}
+                keywords="contact web development company India, hire AI developer India, WhatsApp chatbot quote India, get website quote India, web development cost estimate India"
                 jsonLd={[
                     organizationLd(),
                     localBusinessLd(),

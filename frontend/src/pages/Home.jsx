@@ -135,6 +135,8 @@ const HOME_FAQS = [
     { q: 'What is included in your web development service?', a: 'Our web development service includes UI/UX design, responsive development, on-page SEO setup, Razorpay and UPI payment integration, Google Analytics, and 3 months of free support after launch.' },
     { q: 'What is vibe coding and do you offer it?', a: 'Vibe coding is AI-assisted development where we use tools like GitHub Copilot, Claude, and Cursor to ship MVPs and prototypes 40–60% faster. Yes, Codemistry uses vibe coding techniques to deliver faster without sacrificing code quality.' },
     { q: 'Can you integrate AI agents and automation for my Indian business?', a: 'Yes. We build agentic AI systems — including AI SDRs, document automation, lead scoring agents, and internal knowledge assistants — using Gemini, GPT-4o, and Claude APIs. Projects start from ₹40,000.' },
+    { q: 'Can you build a Progressive Web App (PWA) for my Indian business?', a: 'Yes. PWAs give your customers an app-like experience without requiring a Play Store or App Store download — ideal for Indian users on slower 4G connections. Flipkart and OLX both use PWAs and saw 80%+ bounce rate reductions. Codemistry builds PWAs as part of our web development service, starting from ₹40,000.' },
+    { q: 'Can you integrate Google Gemini AI into my website or business software?', a: 'Yes. We integrate Gemini AI (including Gemini Flash for high-volume chatbots and Gemini Pro for complex reasoning) into websites, mobile apps, CRMs, and internal tools. Gemini supports 50+ languages including Hindi, Tamil, Bengali — ideal for Indian businesses serving multilingual customers.' },
 ];
 
 const Home = () => {
@@ -224,7 +226,7 @@ const Home = () => {
                 title="Web & App Development | AI Chatbot & WhatsApp Automation India"
                 description="Codemistry builds websites, mobile apps, AI chatbots, WhatsApp automation & custom CRM for Indian businesses. Affordable INR pricing, GST-compliant, fast delivery."
                 canonical={SITE_INFO.url + '/'}
-                keywords="web development company India, AI chatbot India, WhatsApp business API integration India, app development India, ecommerce development India, custom CRM India, vibe coding India, agentic AI India, AI automation for small business India, website development for small business India"
+                keywords="web development company India, AI chatbot India, WhatsApp business API integration India, app development India, ecommerce development India, custom CRM India, vibe coding India, agentic AI India, AI automation for small business India, website development for small business India, Gemini AI integration India, progressive web app India, AI agent India, no-code low-code India, SaaS MVP development India, startup website development India, website redesign services India"
                 jsonLd={[
                     organizationLd(),
                     localBusinessLd(),
@@ -280,7 +282,7 @@ const Home = () => {
                         <div className="lg:col-span-7">
                             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 text-white/80 text-xs sm:text-sm font-medium mb-6 sm:mb-8 animate-fade-in-up backdrop-blur-sm bg-white/5">
                                 <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
-                                Software Development Company
+                                Web • AI • WhatsApp Automation • PWA
                             </div>
 
                             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-display font-extrabold text-white leading-[1.08] mb-5 sm:mb-7 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>

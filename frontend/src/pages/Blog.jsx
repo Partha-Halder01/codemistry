@@ -82,9 +82,9 @@ const Blog = () => {
         <>
             <Seo
                 title="Blog — Web, App & AI Insights for Indian Businesses"
-                description="Practical guides on web development cost in India, mobile app pricing, e-commerce setup with Razorpay & UPI, GST-compliant invoicing, and AI integration for Indian startups."
+                description="Expert guides for Indian business owners on web development, AI chatbots, WhatsApp automation, Gemini integration, e-commerce, and app development — with INR pricing."
                 canonical={canonical}
-                keywords="web development India blog, app development India, AI integration India, ecommerce India guide"
+                keywords="web development India blog, AI chatbot India guide, WhatsApp automation India, Gemini AI India, progressive web app India, ecommerce development India, React Native Flutter India, ONDC India, vibe coding India"
                 jsonLd={[
                     organizationLd(),
                     breadcrumbLd([
