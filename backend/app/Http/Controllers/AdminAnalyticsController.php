@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\PageView;
 use Carbon\Carbon;
 
@@ -40,7 +41,7 @@ class AdminAnalyticsController extends Controller
 
         // Bounce rate = % of sessions that viewed only 1 page
         $sessionPageCounts = (clone $query)
-            ->select('session_id', \DB::raw('COUNT(DISTINCT path) as pages'))
+            ->select('session_id', DB::raw('COUNT(DISTINCT path) as pages'))
             ->groupBy('session_id')
             ->get();
         $bouncedSessions = $sessionPageCounts->where('pages', 1)->count();
@@ -52,7 +53,7 @@ class AdminAnalyticsController extends Controller
             ->count('session_id');
 
         $topPages = (clone $query)
-            ->select('path', \DB::raw('count(*) as views'), \DB::raw('FLOOR(AVG(time_spent)) as avg_time'))
+            ->select('path', DB::raw('count(*) as views'), DB::raw('FLOOR(AVG(time_spent)) as avg_time'))
             ->groupBy('path')
             ->orderByDesc('views')
             ->limit(10)
@@ -61,7 +62,7 @@ class AdminAnalyticsController extends Controller
         $topServices = (clone $query)
             ->whereNotNull('service_id')
             ->with('service:id,name')
-            ->select('service_id', \DB::raw('count(*) as views'))
+            ->select('service_id', DB::raw('count(*) as views'))
             ->groupBy('service_id')
             ->orderByDesc('views')
             ->limit(10)
@@ -75,7 +76,7 @@ class AdminAnalyticsController extends Controller
 
         $topCountries = (clone $query)
             ->whereNotNull('country')
-            ->select('country', \DB::raw('count(DISTINCT session_id) as visitors'))
+            ->select('country', DB::raw('count(DISTINCT session_id) as visitors'))
             ->groupBy('country')
             ->orderByDesc('visitors')
             ->limit(5)
@@ -83,7 +84,7 @@ class AdminAnalyticsController extends Controller
 
         $topCities = (clone $query)
             ->whereNotNull('city')
-            ->select('city', 'country', \DB::raw('count(DISTINCT session_id) as visitors'))
+            ->select('city', 'country', DB::raw('count(DISTINCT session_id) as visitors'))
             ->groupBy('city', 'country')
             ->orderByDesc('visitors')
             ->limit(5)
@@ -92,14 +93,14 @@ class AdminAnalyticsController extends Controller
         // Device + browser breakdown (visitors per type)
         $deviceBreakdown = (clone $query)
             ->whereNotNull('device_type')
-            ->select('device_type', \DB::raw('count(DISTINCT session_id) as visitors'))
+            ->select('device_type', DB::raw('count(DISTINCT session_id) as visitors'))
             ->groupBy('device_type')
             ->orderByDesc('visitors')
             ->get();
 
         $browserBreakdown = (clone $query)
             ->whereNotNull('browser')
-            ->select('browser', \DB::raw('count(DISTINCT session_id) as visitors'))
+            ->select('browser', DB::raw('count(DISTINCT session_id) as visitors'))
             ->groupBy('browser')
             ->orderByDesc('visitors')
             ->limit(6)
@@ -108,7 +109,7 @@ class AdminAnalyticsController extends Controller
         $topReferrers = (clone $query)
             ->whereNotNull('referrer')
             ->where('referrer', '!=', '')
-            ->select('referrer', \DB::raw('count(DISTINCT session_id) as visitors'))
+            ->select('referrer', DB::raw('count(DISTINCT session_id) as visitors'))
             ->groupBy('referrer')
             ->orderByDesc('visitors')
             ->limit(6)
@@ -117,11 +118,11 @@ class AdminAnalyticsController extends Controller
         // Daily traffic trend (visitors + views per day across the range)
         $dailyRaw = (clone $query)
             ->select(
-                \DB::raw('DATE(created_at) as date'),
-                \DB::raw('COUNT(*) as views'),
-                \DB::raw('COUNT(DISTINCT session_id) as visitors')
+                DB::raw('DATE(created_at) as date'),
+                DB::raw('COUNT(*) as views'),
+                DB::raw('COUNT(DISTINCT session_id) as visitors')
             )
-            ->groupBy(\DB::raw('DATE(created_at)'))
+            ->groupBy(DB::raw('DATE(created_at)'))
             ->orderBy('date')
             ->get()
             ->keyBy(fn ($r) => (string) $r->date);

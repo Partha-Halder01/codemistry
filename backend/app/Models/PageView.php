@@ -9,12 +9,16 @@ class PageView extends Model
     protected $fillable = [
         'session_id',
         'ip_address',
+        'user_agent',
+        'device_type',
+        'browser',
+        'referrer',
         'country',
         'city',
         'path',
         'service_id',
         'time_spent',
-        'last_ping_at'
+        'last_ping_at',
     ];
 
     protected $casts = [

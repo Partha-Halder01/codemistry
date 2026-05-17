@@ -10,28 +10,30 @@ class AnalyticsController extends Controller
 {
     public function track(Request $request)
     {
-        $request->validate([
-            'session_id' => 'required|string',
-            'path' => 'required|string',
-            'time_spent' => 'required|integer'
+        $validated = $request->validate([
+            'session_id' => 'required|string|max:64',
+            'path'       => 'required|string|max:500',
+            'time_spent' => 'required|integer|min:0|max:86400',
+            'referrer'   => 'nullable|string|max:2000',
         ]);
 
-        $ip = $request->ip();
+        $ip   = $request->ip();
+        $path = $validated['path'];
 
-        $pageView = PageView::where('session_id', $request->session_id)
-            ->where('path', $request->path)
+        $pageView = PageView::where('session_id', $validated['session_id'])
+            ->where('path', $path)
             ->where('created_at', '>=', now()->subHour())
             ->first();
 
         if ($pageView) {
-            $pageView->time_spent = max($pageView->time_spent, $request->time_spent);
+            $pageView->time_spent  = max($pageView->time_spent, $validated['time_spent']);
             $pageView->last_ping_at = now();
             $pageView->save();
         } else {
             $geoData = $this->getGeoLocation($ip);
 
             $serviceId = null;
-            if (preg_match('/^\/services\/([^\/]+)$/', $request->path, $matches)) {
+            if (preg_match('/^\/services\/([^\/]+)$/', $path, $matches)) {
                 $service = \App\Models\Service::where('slug', $matches[1])->first();
                 if ($service) {
                     $serviceId = $service->id;
@@ -41,14 +43,19 @@ class AnalyticsController extends Controller
             $userAgent = $request->userAgent() ?? '';
             $device    = $this->detectDevice($userAgent);
             $browser   = $this->detectBrowser($userAgent);
-            $referrer  = $request->input('referrer') ?: $request->headers->get('referer');
-            if ($referrer) {
-                $host = parse_url($referrer, PHP_URL_HOST);
-                $referrer = $host ?: substr($referrer, 0, 250);
+
+            // Extract external referrer hostname; drop own-domain and empty referrers
+            $rawReferrer = $validated['referrer'] ?? $request->headers->get('referer', '');
+            $referrer    = null;
+            if ($rawReferrer) {
+                $host = parse_url($rawReferrer, PHP_URL_HOST) ?: null;
+                if ($host && !str_contains($host, 'codemistry.in')) {
+                    $referrer = $host;
+                }
             }
 
-            $pageView = PageView::create([
-                'session_id'   => $request->session_id,
+            PageView::create([
+                'session_id'   => $validated['session_id'],
                 'ip_address'   => $ip,
                 'user_agent'   => substr($userAgent, 0, 500),
                 'device_type'  => $device,
@@ -56,9 +63,9 @@ class AnalyticsController extends Controller
                 'referrer'     => $referrer,
                 'country'      => $geoData['country'] ?? null,
                 'city'         => $geoData['city'] ?? null,
-                'path'         => $request->path,
+                'path'         => $path,
                 'service_id'   => $serviceId,
-                'time_spent'   => $request->time_spent,
+                'time_spent'   => $validated['time_spent'],
                 'last_ping_at' => now(),
             ]);
         }
