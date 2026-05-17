@@ -10,7 +10,7 @@ const TOPIC_CLUSTERS = [
     { label: 'App Development', tag: 'app-development' },
     { label: 'E-commerce', tag: 'ecommerce' },
     { label: 'AI Integration', tag: 'ai' },
-    { label: 'GST & Compliance', tag: 'gst' },
+    { label: 'Compliance & Tax', tag: 'gst' },
     { label: 'SEO Tips', tag: 'seo' },
     { label: 'Web Development', tag: 'web-development' },
     { label: 'Startup Guide', tag: 'startup' },
@@ -93,7 +93,7 @@ const Blog = () => {
         <>
             <Seo
                 title="Blog — Web, App & AI Insights for Indian Businesses"
-                description="Practical guides on web development cost in India, mobile app pricing, e-commerce setup with Razorpay & UPI, GST-compliant invoicing, and AI integration for Indian startups."
+                description="Practical guides on web development cost in India, mobile app pricing, e-commerce setup with Razorpay & UPI, and AI integration for Indian startups."
                 canonical={canonical}
                 keywords="web development India blog, app development cost India, AI integration India, ecommerce website India, hire web developer India, website development guide"
                 jsonLd={[
@@ -116,7 +116,7 @@ const Blog = () => {
                             Insights for Indian Businesses Building Online
                         </h1>
                         <p className="mt-4 text-charcoal-600 text-base sm:text-lg">
-                            Honest, India-specific guides on web development, mobile apps, e-commerce, GST compliance, AI integration and pricing in INR.
+                            Honest, India-specific guides on web development, mobile apps, e-commerce, AI integration and pricing in INR.
                         </p>
 
                         <form onSubmit={onSearchSubmit} className="mt-8 flex items-center gap-2 max-w-xl mx-auto">

@@ -69,7 +69,7 @@ const Layout = () => {
                     <div className="flex justify-between items-center h-14 md:h-16">
                         {/* Logo */}
                         <Link to="/" className="flex items-center gap-2.5 group">
-                            <img src="/logo.png" alt="Codemistry Logo" className="h-[36px] md:h-[48px] w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
+                            <img src="/logo.webp" alt="Codemistry Logo" className="h-[36px] md:h-[48px] w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
                         </Link>
 
                         {/* Desktop Nav — Pill Style */}
@@ -108,7 +108,7 @@ const Layout = () => {
                 {/* Drawer Header */}
                 <div className="flex items-center justify-between px-5 h-16 border-b border-charcoal-100">
                     <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
-                        <img src="/logo.png" alt="Codemistry Logo" className="h-10 w-auto object-contain" />
+                        <img src="/logo.webp" alt="Codemistry Logo" className="h-10 w-auto object-contain" />
                     </Link>
                     <button onClick={() => setMobileOpen(false)} aria-label="Close navigation menu" className="p-2 rounded-xl text-charcoal-400 hover:text-charcoal-950 hover:bg-charcoal-50 transition-all">
                         <X className="w-5 h-5" aria-hidden="true" />
@@ -186,7 +186,7 @@ const Layout = () => {
                             {/* Brand Column */}
                             <div className="col-span-2 md:col-span-4">
                                 <Link to="/" className="flex items-center gap-2.5 mb-5 group">
-                                    <div className="bg-white/10 rounded-xl p-3 inline-block"><img src="/logo.png" alt="Codemistry Logo" className="h-12 w-auto object-contain brightness-0 invert" /></div>
+                                    <div className="bg-white/10 rounded-xl p-3 inline-block"><img src="/logo.webp" alt="Codemistry Logo" className="h-12 w-auto object-contain brightness-0 invert" /></div>
                                 </Link>
                                 <p className="text-charcoal-400 text-sm leading-relaxed max-w-xs mb-6">
                                     We craft world-class websites, apps, CRMs, and AI-powered solutions for ambitious Indian businesses.

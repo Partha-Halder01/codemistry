@@ -33,7 +33,7 @@ const Terms = () => (
                     <h2 className="text-xl font-display font-bold text-charcoal-950 mb-3">3. Payment Terms</h2>
                     <ul className="list-disc pl-5 space-y-2 text-charcoal-700 leading-relaxed">
                         <li>Projects are typically billed in milestones (e.g., 40% advance, 30% mid-project, 30% on delivery).</li>
-                        <li>All prices are in Indian Rupees (INR) and include applicable GST.</li>
+                        <li>All prices are quoted in Indian Rupees (INR). Any applicable taxes will be clearly indicated on the invoice.</li>
                         <li>Late payments beyond 7 days may result in work being paused.</li>
                         <li>Refunds are subject to the stage of project completion at the time of cancellation.</li>
                     </ul>

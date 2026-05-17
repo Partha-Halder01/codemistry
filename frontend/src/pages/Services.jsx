@@ -48,7 +48,7 @@ const Services = () => {
         <div className="min-h-screen bg-white">
             <Seo
                 title="Web & App Development Services in India — Transparent INR Pricing"
-                description="Hire Codemistry for web development, mobile apps, e-commerce, AI integration and custom CRM — affordable INR pricing, GST invoice, on-time delivery for Indian businesses."
+                description="Hire Codemistry for web development, mobile apps, e-commerce, AI integration and custom CRM — affordable INR pricing, milestone-based billing, on-time delivery for Indian businesses."
                 canonical={SITE_INFO.url + '/services'}
                 keywords="web development services India, hire web developer India, app development company India, ecommerce website development India, AI integration service India, custom software India, website cost India"
                 jsonLd={[
@@ -69,10 +69,10 @@ const Services = () => {
                         Development Services for Indian Businesses
                     </h1>
                     <p className="text-charcoal-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-                        Affordable websites, mobile apps, e-commerce stores and AI solutions — transparent INR pricing, GST invoice, and on-time delivery guaranteed.
+                        Affordable websites, mobile apps, e-commerce stores and AI solutions — transparent INR pricing, milestone-based billing, and on-time delivery guaranteed.
                     </p>
                     <div className="mt-5 flex flex-wrap justify-center gap-3 text-xs text-charcoal-500">
-                        {['✓ Transparent INR Pricing', '✓ GST Invoice Provided', '✓ On-Time Delivery', '✓ Free Consultation'].map(b => (
+                        {['✓ Transparent INR Pricing', '✓ Milestone-based Billing', '✓ On-Time Delivery', '✓ Free Consultation'].map(b => (
                             <span key={b} className="px-3 py-1.5 bg-charcoal-50 border border-charcoal-100 rounded-full font-medium">{b}</span>
                         ))}
                     </div>

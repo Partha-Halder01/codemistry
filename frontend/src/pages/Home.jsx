@@ -162,7 +162,7 @@ const HOME_FAQS = [
     },
     {
         question: 'Do you work with startups and small businesses in India?',
-        answer: 'Yes. Most of our clients are Indian startups, SMBs, and solo founders. We offer flexible payment plans, GST-compliant invoicing, and milestone-based billing to make quality development accessible.',
+        answer: 'Yes. Most of our clients are Indian startups, SMBs, and solo founders. We offer flexible payment plans, transparent INR pricing, and milestone-based billing to make quality development accessible.',
     },
     {
         question: 'What technologies do you use for web and app development?',
@@ -295,7 +295,7 @@ const Home = () => {
         <div className="bg-white overflow-x-hidden">
             <Seo
                 title="Web & App Development Company in India — Affordable, On-Time"
-                description="Codemistry is an India-based web & app development company. Affordable INR pricing, GST-compliant, AI integrations, e-commerce, and more — for businesses across India."
+                description="Codemistry is an India-based web & app development company. Affordable INR pricing, milestone-based billing, AI integrations, e-commerce, and more — for businesses across India."
                 canonical={SITE_INFO.url + '/'}
                 keywords="web development company India, app development India, ecommerce India, AI integration India, custom software India, hire web developer India, website development cost India, Codemistry"
                 jsonLd={[organizationLd(), localBusinessLd(), websiteLd(), faqPageLd(HOME_FAQS)]}
@@ -342,7 +342,7 @@ const Home = () => {
                             </h1>
 
                             <p className="text-base sm:text-lg text-white/65 max-w-xl mb-8 sm:mb-10 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                                Next.js websites, Flutter &amp; React Native apps, Razorpay e-commerce, AI chatbots and SaaS MVPs — built for Indian businesses with transparent INR pricing and GST-compliant invoicing.
+                                Next.js websites, Flutter &amp; React Native apps, Razorpay e-commerce, AI chatbots and SaaS MVPs — built for Indian businesses with transparent INR pricing and milestone-based billing.
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
