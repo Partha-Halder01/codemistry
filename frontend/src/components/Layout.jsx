@@ -1,14 +1,17 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { Menu, X, Mail, Phone as PhoneIcon, MapPin, ArrowRight, ArrowUpRight, Instagram, Linkedin, Twitter, MessageCircle, ChevronDown, Home, Briefcase, Info, Phone, BookOpen } from 'lucide-react';
-import Chatbot from './Chatbot';
 import MobileBottomBar from './MobileBottomBar';
+
+// Defer Chatbot: drags in react-markdown (~142 KB) — load only after first paint / idle
+const Chatbot = lazy(() => import('./Chatbot'));
 
 const Layout = () => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [openFooterSection, setOpenFooterSection] = useState(null);
+    const [showChatbot, setShowChatbot] = useState(false);
 
     const toggleFooterSection = (section) => {
         setOpenFooterSection(openFooterSection === section ? null : section);
@@ -28,6 +31,17 @@ const Layout = () => {
     }, [location]);
 
     useEffect(() => setMobileOpen(false), [location]);
+
+    // Defer Chatbot mount until the browser is idle — keeps it out of the LCP critical path
+    useEffect(() => {
+        const mount = () => setShowChatbot(true);
+        if ('requestIdleCallback' in window) {
+            const id = window.requestIdleCallback(mount, { timeout: 3000 });
+            return () => window.cancelIdleCallback?.(id);
+        }
+        const t = setTimeout(mount, 2500);
+        return () => clearTimeout(t);
+    }, []);
 
     const isTransparent = isTransparentPage && !scrolled;
     const whatsappNumber = '918910710136';
@@ -134,8 +148,12 @@ const Layout = () => {
             {/* Mobile Bottom Navigation */}
             <MobileBottomBar />
 
-            {/* Chatbot Integration */}
-            <Chatbot />
+            {/* Chatbot Integration — lazy, idle-mounted */}
+            {showChatbot && (
+                <Suspense fallback={null}>
+                    <Chatbot />
+                </Suspense>
+            )}
 
             {/* Floating WhatsApp Button */}
             {!isAiSupport && (
