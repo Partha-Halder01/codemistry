@@ -243,10 +243,18 @@ const Home = () => {
 
     useEffect(() => {
         startAutoSwipe();
-        fetchFeaturedServices();
-        api.get('/blog-posts/latest')
-            .then(r => setLatestPosts(r.data?.data || []))
-            .catch(() => setLatestPosts([]));
+        // Defer non-critical fetches to idle time so they don't compete with hero LCP
+        const runDeferred = () => {
+            fetchFeaturedServices();
+            api.get('/blog-posts/latest')
+                .then(r => setLatestPosts(r.data?.data || []))
+                .catch(() => setLatestPosts([]));
+        };
+        if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(runDeferred, { timeout: 2000 });
+        } else {
+            setTimeout(runDeferred, 250);
+        }
         return () => clearInterval(slideInterval.current);
     }, [startAutoSwipe]);
 
@@ -333,8 +341,8 @@ const Home = () => {
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-brand-300">Powerful Software.</span>
                             </h1>
 
-                            <p className="text-base sm:text-lg text-white/65 max-w-lg mb-8 sm:mb-10 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                                We build websites, mobile apps, CRM systems &amp; AI solutions that help Indian businesses scale faster and serve customers better.
+                            <p className="text-base sm:text-lg text-white/65 max-w-xl mb-8 sm:mb-10 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                                Next.js websites, Flutter &amp; React Native apps, Razorpay e-commerce, AI chatbots and SaaS MVPs — built for Indian businesses with transparent INR pricing and GST-compliant invoicing.
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
