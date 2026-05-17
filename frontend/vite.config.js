@@ -28,11 +28,11 @@ const inlineCriticalCss = () => ({
 export default defineConfig({
   plugins: [react(), inlineCriticalCss()],
   build: {
-    // Disable Vite's automatic modulepreload polyfill emission so the markdown/oauth
-    // chunks (only used on lazy routes) don't get preloaded on the homepage.
+    // Keep the polyfill (needed so dynamic-import chunks still get preloaded
+    // when their lazy route fires), but filter the entry's preload list so the
+    // markdown/oauth chunks — used only on lazy routes — don't get downloaded
+    // for nothing on the homepage.
     modulePreload: {
-      polyfill: false,
-      // Only preload the entry's direct synchronous deps, not the entire reachable graph.
       resolveDependencies: (_filename, deps) => deps.filter((d) =>
         !/markdown|oauth/i.test(d)
       ),
