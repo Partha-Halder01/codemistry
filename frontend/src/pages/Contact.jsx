@@ -51,7 +51,7 @@ const Contact = () => {
                     {/* Contact Info */}
                     <div className="space-y-6">
                         <div className="bg-charcoal-50 rounded-2xl p-8">
-                            <h3 className="text-lg font-display font-bold text-charcoal-950 mb-6">Contact Information</h3>
+                            <h2 className="text-lg font-display font-bold text-charcoal-950 mb-6">Contact Information</h2>
                             <div className="space-y-5">
                                 {[
                                     { icon: Mail, label: 'Email Us', value: 'codemistry359@gmail.com', href: 'mailto:codemistry359@gmail.com' },
@@ -78,7 +78,7 @@ const Contact = () => {
                         </div>
 
                         <div className="bg-charcoal-50 rounded-2xl p-8">
-                            <h3 className="text-sm font-bold text-charcoal-950 mb-3">Office Hours</h3>
+                            <h2 className="text-sm font-bold text-charcoal-950 mb-3">Office Hours</h2>
                             <p className="text-charcoal-500 text-sm flex justify-between border-b border-charcoal-200 pb-2 mb-2">
                                 <span>Monday – Saturday:</span> <span>24 Hours</span>
                             </p>
@@ -90,7 +90,7 @@ const Contact = () => {
 
                     {/* Form */}
                     <div className="bg-white border border-charcoal-100 rounded-2xl p-8">
-                        <h3 className="text-xl font-display font-bold text-charcoal-950 mb-6">Send a Message</h3>
+                        <h2 className="text-xl font-display font-bold text-charcoal-950 mb-6">Send a Message</h2>
 
                         {status.message && (
                             <div className={`p-3 rounded-lg mb-5 text-sm ${status.type === 'success' ? 'bg-green-50 text-green-700 border border-green-100' : 'bg-red-50 text-red-700 border border-red-100'}`}>

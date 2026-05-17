@@ -22,24 +22,47 @@ const useScrollReveal = () => {
     }, []);
 };
 
-/* ─── Parallax Hook ─── */
+/* ─── Parallax Hook ─── rAF-batched, single read of viewport per frame */
 const useParallax = () => {
     const elementsRef = useRef([]);
     const register = useCallback((el) => {
         if (el && !elementsRef.current.includes(el)) elementsRef.current.push(el);
     }, []);
     useEffect(() => {
-        const handleScroll = () => {
+        let ticking = false;
+        const update = () => {
+            const viewportH = window.innerHeight;
+            const scrollY = window.scrollY;
             elementsRef.current.forEach((el) => {
-                const rect = el.getBoundingClientRect();
+                // Cache offsetTop once per element; refreshed on resize
+                if (el._cachedTop == null) {
+                    el._cachedTop = el.getBoundingClientRect().top + scrollY;
+                }
+                const top = el._cachedTop - scrollY;
                 const speed = parseFloat(el.dataset.speed || '0.15');
-                const yOffset = (rect.top - window.innerHeight / 2) * speed;
-                el.style.transform = `translateY(${yOffset}px)`;
+                const yOffset = (top - viewportH / 2) * speed;
+                el.style.transform = `translate3d(0, ${yOffset}px, 0)`;
             });
+            ticking = false;
         };
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
-        return () => window.removeEventListener('scroll', handleScroll);
+        const onScroll = () => {
+            if (!ticking) {
+                ticking = true;
+                requestAnimationFrame(update);
+            }
+        };
+        const onResize = () => {
+            // Invalidate cached positions on layout-affecting resize
+            elementsRef.current.forEach((el) => { el._cachedTop = null; });
+            onScroll();
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onResize, { passive: true });
+        update();
+        return () => {
+            window.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', onResize);
+        };
     }, []);
     return register;
 };
@@ -89,7 +112,7 @@ const CountUpCard = ({ value, suffix = '', label, Icon, color, transparent }) =>
                     <Icon className="w-5 h-5 text-white" />
                 </div>
                 <div className="text-3xl font-display font-extrabold text-white leading-none">{displayValue}{displaySuffix}</div>
-                <div className="text-[11px] text-white/50 font-semibold mt-1.5 uppercase tracking-wider">{label}</div>
+                <div className="text-[11px] text-white/70 font-semibold mt-1.5 uppercase tracking-wider">{label}</div>
             </div>
         );
     }
@@ -98,7 +121,7 @@ const CountUpCard = ({ value, suffix = '', label, Icon, color, transparent }) =>
         <div ref={ref} className="bg-white/[0.12] border border-white/15 rounded-xl px-2 py-3 text-center">
             <Icon className="w-4 h-4 text-brand-400 mx-auto mb-1" />
             <div className="text-sm sm:text-lg font-display font-extrabold text-white">{displayValue}{displaySuffix}</div>
-            <div className="text-[9px] sm:text-[10px] text-white/50 font-medium">{label}</div>
+            <div className="text-[9px] sm:text-[10px] text-white/70 font-medium">{label}</div>
         </div>
     );
 };
@@ -195,7 +218,7 @@ const Home = () => {
             const response = await api.get('/services?featured=true');
             setFeaturedServices(response.data);
         } catch (error) {
-            console.error('Error fetching featured services:', error);
+            if (import.meta.env.DEV) console.error('Error fetching featured services:', error);
         } finally {
             setServicesLoading(false);
         }
@@ -276,11 +299,19 @@ const Home = () => {
             <section className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden">
                 {/* Background image with slow zoom */}
                 <div className="absolute inset-0">
-                    <img
-                        src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1800&q=80"
-                        alt="Team working"
-                        className="w-full h-full object-cover hero-bg-zoom"
-                    />
+                    <picture>
+                        <source media="(max-width: 768px)" srcSet="/hero-mobile.webp" />
+                        <img
+                            src="/hero.webp"
+                            alt="Codemistry team collaborating on software development project"
+                            fetchpriority="high"
+                            loading="eager"
+                            decoding="async"
+                            width="1024"
+                            height="683"
+                            className="w-full h-full object-cover hero-bg-zoom"
+                        />
+                    </picture>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-charcoal-950/95 via-charcoal-950/80 to-charcoal-950/50"></div>
 
@@ -336,7 +367,7 @@ const Home = () => {
                                 </div>
                                 <div>
                                     <div className="text-white font-display font-bold text-sm">3x Average Growth</div>
-                                    <div className="text-white/40 text-xs">Our clients see measurable results within 30 days</div>
+                                    <div className="text-white/70 text-xs">Our clients see measurable results within 30 days</div>
                                 </div>
                             </div>
                         </div>
@@ -365,7 +396,7 @@ const Home = () => {
                 <div className="marquee-track">
                     {[...techLogos, ...techLogos].map((tech, i) => (
                         <div key={i} className="mx-5 sm:mx-9 flex items-center gap-2.5 whitespace-nowrap select-none shrink-0">
-                            <img src={tech.logo} alt={tech.name} className="w-7 h-7 sm:w-8 sm:h-8" />
+                            <img src={tech.logo} alt={tech.name} loading="lazy" decoding="async" width="32" height="32" className="w-7 h-7 sm:w-8 sm:h-8" />
                             <span className="text-charcoal-500 font-display font-semibold text-xs sm:text-sm">{tech.name}</span>
                         </div>
                     ))}
@@ -375,7 +406,7 @@ const Home = () => {
             {/* ═══════════════════════════════════════════════ */}
             {/* 3. OUR EXPERTISE                               */}
             {/* ═══════════════════════════════════════════════ */}
-            <section className="py-16 sm:py-24 md:py-28 px-5 sm:px-6 lg:px-10">
+            <section className="cv-auto py-16 sm:py-24 md:py-28 px-5 sm:px-6 lg:px-10">
                 <div className="max-w-7xl mx-auto">
                     <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-4 sm:gap-6 mb-10 sm:mb-14 reveal text-center md:text-left">
                         <div>
@@ -402,7 +433,7 @@ const Home = () => {
                                         <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                                     </div>
                                     <h3 className="text-sm sm:text-lg font-display font-bold text-charcoal-950 mb-1">{s.title}</h3>
-                                    <p className="text-charcoal-400 text-xs sm:text-sm mb-3">{s.desc}</p>
+                                    <p className="text-charcoal-600 text-xs sm:text-sm mb-3">{s.desc}</p>
                                     <span className={`inline-flex items-center gap-1 text-xs font-semibold ${s.badge.split(' ')[1]} group-hover:gap-2 transition-all`}>
                                         Learn more <ChevronRight className="w-3 h-3" />
                                     </span>
@@ -416,7 +447,7 @@ const Home = () => {
             {/* ═══════════════════════════════════════════════ */}
             {/* 4. HOW WE WORK — Timeline Journey               */}
             {/* ═══════════════════════════════════════════════ */}
-            <section className="py-16 sm:py-24 md:py-32 px-5 sm:px-6 lg:px-10 bg-charcoal-950 overflow-hidden relative">
+            <section className="cv-auto py-16 sm:py-24 md:py-32 px-5 sm:px-6 lg:px-10 bg-charcoal-950 overflow-hidden relative">
                 {/* Subtle ambient glow blobs */}
                 <div className="absolute top-20 left-1/4 w-72 h-72 bg-brand-500/[0.04] rounded-full blur-3xl pointer-events-none"></div>
                 <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-brand-400/[0.03] rounded-full blur-3xl pointer-events-none"></div>
@@ -428,7 +459,7 @@ const Home = () => {
                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-white">
                             How We Work
                         </h2>
-                        <p className="text-white/40 text-sm sm:text-base mt-4 max-w-lg mx-auto">A proven process that turns your vision into reality — step by step.</p>
+                        <p className="text-white/70 text-sm sm:text-base mt-4 max-w-lg mx-auto">A proven process that turns your vision into reality — step by step.</p>
                     </div>
 
                     {/* Timeline */}
@@ -456,10 +487,13 @@ const Home = () => {
                                     <div className={`w-full md:w-[calc(50%-2rem)] pl-12 md:pl-0 ${isEven ? 'md:pr-12' : 'md:pl-12'} ${isEven ? 'reveal-left' : 'reveal-right'}`}>
                                         <div className="relative group rounded-2xl overflow-hidden timeline-img-glow transition-shadow duration-500 border border-white/[0.06]">
                                             <img
-                                                src={item.img}
+                                                src={item.img.replace('w=700&q=80', 'w=560&q=55&fm=webp&auto=format')}
                                                 alt={item.title}
-                                                className="w-full h-52 sm:h-64 md:h-72 object-cover group-hover:scale-105 transition-transform duration-700"
                                                 loading="lazy"
+                                                decoding="async"
+                                                width="700"
+                                                height="288"
+                                                className="w-full h-52 sm:h-64 md:h-72 object-cover group-hover:scale-105 transition-transform duration-700"
                                             />
                                             {/* Subtle gradient overlay on image */}
                                             <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/50 via-transparent to-transparent"></div>
@@ -476,7 +510,7 @@ const Home = () => {
 
                                     {/* Content side — with card glow */}
                                     <div className={`w-full md:w-[calc(50%-2rem)] pl-12 md:pl-0 ${isEven ? 'md:pl-12' : 'md:pr-12'} ${isEven ? 'reveal-right' : 'reveal-left'}`}>
-                                        <p className="text-brand-400/60 font-semibold text-[10px] sm:text-xs tracking-[0.2em] uppercase mb-2 sm:mb-3 flex items-center gap-2">
+                                        <p className="text-brand-300 font-semibold text-[10px] sm:text-xs tracking-[0.2em] uppercase mb-2 sm:mb-3 flex items-center gap-2">
                                             <span className="w-8 h-px bg-gradient-to-r from-brand-500/60 to-transparent"></span>
                                             Milestone
                                         </p>
@@ -517,7 +551,7 @@ const Home = () => {
             {/* ═══════════════════════════════════════════════ */}
             {/* 6. SERVICE DETAILS                             */}
             {/* ═══════════════════════════════════════════════ */}
-            <section className="py-16 sm:py-24 md:py-28 px-5 sm:px-6 lg:px-10">
+            <section className="cv-auto py-16 sm:py-24 md:py-28 px-5 sm:px-6 lg:px-10">
                 <div className="max-w-7xl mx-auto">
                     <div className="mb-14 sm:mb-20 reveal text-center md:text-left">
                         <p className="text-brand-600 font-semibold text-xs sm:text-sm tracking-wide uppercase mb-2 sm:mb-3">Services in detail</p>
@@ -545,6 +579,10 @@ const Home = () => {
                                                 <img
                                                     src={service.cover_image_path}
                                                     alt={service.name}
+                                                    loading="lazy"
+                                                    decoding="async"
+                                                    width="600"
+                                                    height="338"
                                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
                                                 />
                                                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/40 via-transparent to-transparent"></div>
@@ -585,7 +623,7 @@ const Home = () => {
             {/* ═══════════════════════════════════════════════ */}
             {/* 7. CLIENT REVIEWS                              */}
             {/* ═══════════════════════════════════════════════ */}
-            <section className="py-16 sm:py-24 md:py-28 px-5 sm:px-6 lg:px-10 bg-white overflow-hidden">
+            <section className="cv-auto py-16 sm:py-24 md:py-28 px-5 sm:px-6 lg:px-10 bg-white overflow-hidden">
                 <div className="max-w-7xl mx-auto">
                     <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-4 mb-10 sm:mb-14 reveal text-center md:text-left">
                         <div>
@@ -593,11 +631,11 @@ const Home = () => {
                             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-charcoal-950">What Our Clients Say</h2>
                         </div>
                         <div className="flex gap-2">
-                            <button onClick={prevSlide} className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-charcoal-200 flex items-center justify-center text-charcoal-400 hover:text-charcoal-950 hover:border-charcoal-950 transition-all duration-300">
-                                <ChevronLeft className="w-5 h-5" />
+                            <button onClick={prevSlide} aria-label="Previous testimonial" className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border-2 border-charcoal-200 flex items-center justify-center text-charcoal-600 hover:text-charcoal-950 hover:border-charcoal-950 transition-all duration-300">
+                                <ChevronLeft className="w-5 h-5" aria-hidden="true" />
                             </button>
-                            <button onClick={nextSlide} className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-charcoal-200 flex items-center justify-center text-charcoal-400 hover:text-charcoal-950 hover:border-charcoal-950 transition-all duration-300">
-                                <ChevronRight className="w-5 h-5" />
+                            <button onClick={nextSlide} aria-label="Next testimonial" className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border-2 border-charcoal-200 flex items-center justify-center text-charcoal-600 hover:text-charcoal-950 hover:border-charcoal-950 transition-all duration-300">
+                                <ChevronRight className="w-5 h-5" aria-hidden="true" />
                             </button>
                         </div>
                     </div>
@@ -623,8 +661,8 @@ const Home = () => {
                                                     {t.name?.charAt(0)?.toUpperCase() || 'U'}
                                                 </div>
                                                 <div>
-                                                    <h4 className="text-charcoal-950 font-display font-bold text-sm sm:text-base">{t.name}</h4>
-                                                    <p className="text-charcoal-400 text-xs sm:text-sm mt-0.5">{t.role}</p>
+                                                    <h3 className="text-charcoal-950 font-display font-bold text-sm sm:text-base">{t.name}</h3>
+                                                    <p className="text-charcoal-600 text-xs sm:text-sm mt-0.5">{t.role}</p>
                                                     <div className="flex gap-0.5 mt-1.5 md:justify-center">
                                                         {[...Array(t.rating)].map((_, j) => (
                                                             <Star key={j} className="w-3.5 h-3.5 text-brand-400 fill-brand-400" />
@@ -646,14 +684,19 @@ const Home = () => {
                         </div>
                     </div>
 
-                    {/* Dots */}
-                    <div className="flex justify-center gap-2.5 mt-8 sm:mt-10">
-                        {testimonials.map((_, i) => (
+                    {/* Dots — visible dot is tiny but clickable area is 44×44 for a11y */}
+                    <div className="flex justify-center gap-1 mt-8 sm:mt-10" role="tablist" aria-label="Testimonial navigation">
+                        {testimonials.map((t, i) => (
                             <button
                                 key={i}
                                 onClick={() => goToSlide(i)}
-                                className={`rounded-full transition-all duration-300 ${i === (activeSlide % testimonials.length) ? 'w-8 h-2.5 bg-brand-500' : 'w-2.5 h-2.5 bg-charcoal-200 hover:bg-charcoal-300'}`}
-                            />
+                                role="tab"
+                                aria-selected={i === (activeSlide % testimonials.length)}
+                                aria-label={`Go to testimonial by ${t.name}`}
+                                className="w-11 h-11 flex items-center justify-center group"
+                            >
+                                <span aria-hidden="true" className={`rounded-full transition-all duration-300 ${i === (activeSlide % testimonials.length) ? 'w-8 h-2.5 bg-brand-500' : 'w-2.5 h-2.5 bg-charcoal-200 group-hover:bg-charcoal-300'}`} />
+                            </button>
                         ))}
                     </div>
                 </div>
@@ -691,7 +734,7 @@ const Home = () => {
                                     <Link to={`/blog/${post.slug}`} className="block">
                                         <div className="aspect-[16/9] bg-gradient-to-br from-brand-100 to-brand-50 overflow-hidden">
                                             {post.cover_image_url ? (
-                                                <img src={post.cover_image_url} alt={post.title} loading="lazy" className="w-full h-full object-cover" />
+                                                <img src={post.cover_image_url} alt={post.title} loading="lazy" decoding="async" width="640" height="360" className="w-full h-full object-cover" />
                                             ) : (
                                                 <div className="w-full h-full flex items-center justify-center text-brand-700 text-3xl font-display font-bold opacity-40">CM</div>
                                             )}
@@ -720,7 +763,7 @@ const Home = () => {
             {/* ═══════════════════════════════════════════════ */}
             {/* 8. FAQ                                         */}
             {/* ═══════════════════════════════════════════════ */}
-            <section className="py-16 sm:py-24 px-5 sm:px-6 lg:px-10 bg-white">
+            <section className="cv-auto py-16 sm:py-24 px-5 sm:px-6 lg:px-10 bg-white">
                 <div className="max-w-3xl mx-auto">
                     <div className="text-center mb-10 reveal">
                         <p className="text-brand-600 font-semibold text-xs sm:text-sm tracking-wide uppercase mb-2">FAQ</p>
@@ -740,7 +783,7 @@ const Home = () => {
             {/* ═══════════════════════════════════════════════ */}
             {/* 9. CTA                                         */}
             {/* ═══════════════════════════════════════════════ */}
-            <section className="px-4 sm:px-6 lg:px-10 py-16 sm:py-24">
+            <section className="cv-auto px-4 sm:px-6 lg:px-10 py-16 sm:py-24">
                 <div className="relative w-full max-w-7xl mx-auto rounded-[2.5rem] bg-charcoal-950 overflow-hidden shadow-2xl group min-h-[500px] flex flex-col lg:flex-row items-center justify-between px-6 sm:px-12 md:px-16 py-16 sm:py-24 border border-charcoal-800 gap-12 lg:gap-8">
 
                     {/* Animated Background Orbs */}

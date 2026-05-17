@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+/* Google Fonts loaded non-blocking via <link> in index.html */
 
 @tailwind base;
 @tailwind components;
@@ -12,6 +12,12 @@
 
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Defer rendering of below-fold sections until they near the viewport */
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 800px;
   }
 }
 
@@ -262,49 +268,52 @@
   animation: none;
 }
 
-/* ─── Timeline Glow Effects ─── */
-@keyframes dot-pulse {
-
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(234, 120, 20, 0.5);
-  }
-
-  50% {
-    box-shadow: 0 0 16px 6px rgba(234, 120, 20, 0.35);
-  }
+/* ─── Timeline Glow Effects (GPU-composited: transform + opacity only) ─── */
+@keyframes dot-pulse-scale {
+  0%, 100% { transform: scale(1); opacity: 0.55; }
+  50%      { transform: scale(1.9); opacity: 0; }
 }
 
-@keyframes card-glow {
-
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(234, 120, 20, 0);
-  }
-
-  50% {
-    box-shadow: 0 0 30px -5px rgba(234, 120, 20, 0.12);
-  }
+@keyframes card-glow-fade {
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 1; }
 }
 
 @keyframes line-glow {
-
-  0%,
-  100% {
-    opacity: 0.15;
-  }
-
-  50% {
-    opacity: 0.4;
-  }
+  0%, 100% { opacity: 0.15; }
+  50%      { opacity: 0.4; }
 }
 
+/* Pulsing ring sits in a ::after so the dot itself stays still */
 .timeline-dot {
-  animation: dot-pulse 2.5s ease-in-out infinite;
+  position: relative;
+}
+.timeline-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(234, 120, 20, 0.4);
+  z-index: -1;
+  animation: dot-pulse-scale 2.5s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
+/* Glow lives in a ::before overlay so we animate opacity instead of box-shadow */
 .timeline-card {
-  animation: card-glow 4s ease-in-out infinite;
+  position: relative;
+}
+.timeline-card::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(234, 120, 20, 0.18) 0%, rgba(234, 120, 20, 0) 70%);
+  filter: blur(10px);
+  z-index: -1;
+  animation: card-glow-fade 4s ease-in-out infinite;
+  will-change: opacity;
 }
 
 .timeline-line-glow {

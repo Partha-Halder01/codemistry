@@ -82,6 +82,7 @@ const Services = () => {
             {/* ── Services Grid ── */}
             <section id="services-grid" className="px-5 sm:px-6 lg:px-10 pb-20 pt-8">
                 <div className="max-w-7xl mx-auto">
+                    <h2 className="sr-only">Our Services</h2>
                     {loading ? (
                         <div className="flex justify-center py-32">
                             <div className="w-12 h-12 border-4 border-brand-200 border-t-brand-500 rounded-full animate-spin" />
@@ -153,7 +154,7 @@ const Services = () => {
                                                     View details <ChevronRight className="w-4 h-4" />
                                                 </span>
                                                 {getPriceRange(service) && (
-                                                    <span className="text-xs text-charcoal-400 font-medium">{getPriceRange(service)}</span>
+                                                    <span className="text-xs text-charcoal-600 font-medium">{getPriceRange(service)}</span>
                                                 )}
                                             </div>
                                         </div>
@@ -168,7 +169,7 @@ const Services = () => {
                         <div className="py-32 text-center bg-charcoal-50 rounded-3xl border border-dashed border-charcoal-200">
                             <Monitor className="w-14 h-14 mx-auto mb-4 text-charcoal-300" />
                             <p className="text-xl font-semibold text-charcoal-600 mb-2">No services available yet.</p>
-                            <p className="text-charcoal-400 text-sm mb-6">Check back later or contact us directly.</p>
+                            <p className="text-charcoal-600 text-sm mb-6">Check back later or contact us directly.</p>
                             <Link to="/contact" className="inline-flex items-center gap-2 bg-brand-500 text-white font-semibold px-6 py-3 rounded-full hover:bg-brand-600 transition-colors">
                                 Contact Us <ArrowRight className="w-4 h-4" />
                             </Link>

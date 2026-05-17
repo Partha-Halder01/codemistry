@@ -132,10 +132,10 @@ const About = () => {
                     <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
                         {/* Left: Sticky Text */}
                         <div className="w-full lg:w-1/2 lg:sticky lg:top-32 animate-fade-in-up">
-                            <h2 className="text-brand-600 font-bold tracking-wider uppercase text-sm mb-3">Our Mission</h2>
-                            <h3 className="text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-charcoal-950 mb-6 leading-tight">
+                            <p className="text-brand-600 font-bold tracking-wider uppercase text-sm mb-3">Our Mission</p>
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-charcoal-950 mb-6 leading-tight">
                                 Redefining the standard of <span className="text-brand-500">digital experiences.</span>
-                            </h3>
+                            </h2>
                             <p className="text-charcoal-600 text-lg leading-relaxed mb-6">
                                 We're not just a development agency. We're your technical partners. We believe that great software is a combination of robust engineering and breathtaking design.
                             </p>
@@ -178,8 +178,8 @@ const About = () => {
 
                 <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 relative z-10">
                     <div className="text-center mb-16 animate-fade-in-up">
-                        <h2 className="text-brand-500 font-bold tracking-wider uppercase text-sm mb-3">By The Numbers</h2>
-                        <h3 className="text-3xl md:text-5xl font-display font-extrabold text-white">Proven Track Record</h3>
+                        <p className="text-brand-500 font-bold tracking-wider uppercase text-sm mb-3">By The Numbers</p>
+                        <h2 className="text-3xl md:text-5xl font-display font-extrabold text-white">Proven Track Record</h2>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -195,8 +195,8 @@ const About = () => {
             <section className="py-24 bg-white relative">
                 <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
                     <div className="text-center mb-20 animate-fade-in-up">
-                        <h2 className="text-brand-600 font-bold tracking-wider uppercase text-sm mb-3">How We Work</h2>
-                        <h3 className="text-3xl md:text-5xl font-display font-extrabold text-charcoal-950">A proven, transparent process.</h3>
+                        <p className="text-brand-600 font-bold tracking-wider uppercase text-sm mb-3">How We Work</p>
+                        <h2 className="text-3xl md:text-5xl font-display font-extrabold text-charcoal-950">A proven, transparent process.</h2>
                     </div>
 
                     <div className="relative">

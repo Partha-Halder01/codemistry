@@ -4,7 +4,12 @@ import { Home, Briefcase, Bot, Phone } from 'lucide-react';
 const MobileBottomBar = () => {
     const location = useLocation();
 
-    const userRole = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user'))?.role : null;
+    const userRole = (() => {
+        try {
+            const raw = localStorage.getItem('user');
+            return raw ? JSON.parse(raw)?.role : null;
+        } catch { return null; }
+    })();
     const accountRoute = userRole === 'admin' ? '/admin/dashboard' : '/dashboard';
 
     const navItems = [

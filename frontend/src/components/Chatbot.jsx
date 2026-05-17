@@ -57,7 +57,7 @@ const Chatbot = () => {
             const replyText = response.data.reply;
             setMessages([...newMessages, { role: 'model', content: replyText }]);
         } catch (error) {
-            console.error('Chat error:', error);
+            if (import.meta.env.DEV) console.error('Chat error:', error);
             const errReply = "I'm sorry, I'm having trouble connecting to my brain right now. Please try again later.";
             setMessages([...newMessages, {
                 role: 'model',
@@ -89,9 +89,14 @@ const Chatbot = () => {
 
     return (
         <div className="fixed bottom-6 left-6 z-[60] flex flex-col items-start gap-4">
-            <div className={`
-                absolute bottom-20 left-0 w-[350px] sm:w-[420px] h-[600px] max-h-[85vh] 
-                bg-white/90 backdrop-blur-2xl border border-white/20 rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] 
+            <div
+                id="chatbot-dialog"
+                role="dialog"
+                aria-modal="true"
+                aria-label="Codemistry AI Assistant"
+                className={`
+                absolute bottom-20 left-0 w-[350px] sm:w-[420px] h-[600px] max-h-[85vh]
+                bg-white/90 backdrop-blur-2xl border border-white/20 rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)]
                 flex flex-col overflow-hidden transition-all duration-500 cubic-bezier(0.16, 1, 0.3, 1) origin-bottom-left
                 hidden md:flex
                 ${isOpen ? 'scale-100 opacity-100 pointer-events-auto translate-y-0' : 'scale-95 opacity-0 pointer-events-none translate-y-10'}
@@ -112,9 +117,10 @@ const Chatbot = () => {
                     </div>
                     <button
                         onClick={() => setIsOpen(false)}
+                        aria-label="Close AI assistant"
                         className="w-9 h-9 flex items-center justify-center rounded-xl bg-white/5 text-white/70 hover:text-white hover:bg-white/10 transition-all duration-200"
                     >
-                        <X className="w-4 h-4" />
+                        <X className="w-4 h-4" aria-hidden="true" />
                     </button>
                 </div>
 
@@ -172,16 +178,18 @@ const Chatbot = () => {
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             placeholder="How can I help you?"
-                            className="flex-1 bg-white border border-charcoal-200 rounded-2xl px-4 pr-14 py-4 text-[13px] font-medium focus:outline-none focus:ring-4 focus:ring-purple-600/10 focus:border-purple-600 transition-all placeholder:text-charcoal-400 shadow-sm"
+                            aria-label="Type your message"
+                            className="flex-1 bg-white border border-charcoal-200 rounded-2xl px-4 pr-14 py-4 text-[13px] font-medium focus:outline-none focus:ring-4 focus:ring-purple-600/10 focus:border-purple-600 transition-all placeholder:text-charcoal-600 shadow-sm"
                             disabled={isLoading}
                         />
 
                         <button
                             type="submit"
                             disabled={!input.trim() || isLoading}
-                            className="absolute right-2 bg-purple-600 text-white w-10 h-10 rounded-xl flex items-center justify-center hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-purple-600/20 shrink-0 group-form"
+                            aria-label="Send message"
+                            className="absolute right-2 bg-purple-600 text-white w-11 h-11 rounded-xl flex items-center justify-center hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-purple-600/20 shrink-0 group-form"
                         >
-                            <Send className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                            <Send className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
                         </button>
                     </form>
                     <div className="mt-3 flex justify-center items-center gap-2 opacity-50">
@@ -194,6 +202,9 @@ const Chatbot = () => {
 
             <button
                 onClick={() => setIsOpen(!isOpen)}
+                aria-label={isOpen ? 'Close AI assistant' : 'Open AI assistant'}
+                aria-expanded={isOpen}
+                aria-controls="chatbot-dialog"
                 className={`
                     group hidden md:flex items-center gap-3 px-6 py-4 rounded-full shadow-2xl transition-all duration-500 cubic-bezier(0.16, 1, 0.3, 1) relative overflow-hidden
                     ${isOpen

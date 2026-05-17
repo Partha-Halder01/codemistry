@@ -21,7 +21,7 @@ const Layout = () => {
     const isTransparentPage = isHome || isAbout;
 
     useEffect(() => {
-        setIsAuthenticated(!!localStorage.getItem('auth_token'));
+        try { setIsAuthenticated(!!localStorage.getItem('auth_token')); } catch { /* private mode — ignore */ }
         const onScroll = () => setScrolled(window.scrollY > 60);
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
@@ -44,8 +44,13 @@ const Layout = () => {
 
     return (
         <div className="min-h-screen flex flex-col bg-white">
+            {/* Skip to main content — keyboard / screen-reader navigation */}
+            <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-brand-600 focus:text-white focus:rounded-lg focus:text-sm focus:font-semibold">
+                Skip to main content
+            </a>
+
             {/* ──── HEADER ──── */}
-            <header className={`fixed w-full z-50 transition-all duration-500 ${isTransparent ? 'bg-transparent' : 'bg-white/90 backdrop-blur-xl shadow-md shadow-charcoal-950/[0.03] border-b border-charcoal-50'}`}>
+            <header role="banner" className={`fixed w-full z-50 transition-all duration-500 ${isTransparent ? 'bg-transparent' : 'bg-white/90 backdrop-blur-xl shadow-md shadow-charcoal-950/[0.03] border-b border-charcoal-50'}`}>
                 <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
                     <div className="flex justify-between items-center h-14 md:h-16">
                         {/* Logo */}
@@ -54,10 +59,11 @@ const Layout = () => {
                         </Link>
 
                         {/* Desktop Nav — Pill Style */}
-                        <nav className="hidden md:flex items-center">
+                        <nav aria-label="Main navigation" className="hidden md:flex items-center">
                             <div className={`flex items-center gap-1 px-1.5 py-1.5 rounded-full transition-all duration-300 ${isTransparent ? 'bg-white/[0.08] backdrop-blur-sm' : 'bg-charcoal-50'}`}>
                                 {navLinks.map((link) => (
                                     <Link key={link.to} to={link.to}
+                                        aria-current={location.pathname === link.to ? 'page' : undefined}
                                         className={`text-sm font-medium px-4 py-1.5 rounded-full transition-all duration-200 ${isTransparent
                                             ? (location.pathname === link.to ? 'bg-white/20 text-white' : 'text-white/70 hover:text-white hover:bg-white/10')
                                             : (location.pathname === link.to ? 'bg-white text-charcoal-950 shadow-sm' : 'text-charcoal-500 hover:text-charcoal-950')
@@ -70,8 +76,8 @@ const Layout = () => {
                         {/* Desktop CTA - Removed as requested */}
 
                         {/* Mobile Menu Button */}
-                        <button onClick={() => setMobileOpen(true)} className={`md:hidden p-2 rounded-xl transition-all ${isTransparent ? 'text-white hover:bg-white/10' : 'text-charcoal-800 hover:bg-charcoal-50'}`}>
-                            <Menu className="w-6 h-6" />
+                        <button onClick={() => setMobileOpen(true)} aria-label="Open navigation menu" aria-expanded={mobileOpen} aria-controls="mobile-drawer" className={`md:hidden p-2 rounded-xl transition-all ${isTransparent ? 'text-white hover:bg-white/10' : 'text-charcoal-800 hover:bg-charcoal-50'}`}>
+                            <Menu className="w-6 h-6" aria-hidden="true" />
                         </button>
                     </div>
                 </div>
@@ -84,19 +90,19 @@ const Layout = () => {
                 onClick={() => setMobileOpen(false)}
             />
             {/* Drawer */}
-            <div className={`fixed top-0 right-0 z-[70] h-full w-[280px] bg-white shadow-2xl transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden flex flex-col ${mobileOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            <div id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Navigation menu" className={`fixed top-0 right-0 z-[70] h-full w-[280px] bg-white shadow-2xl transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden flex flex-col ${mobileOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 {/* Drawer Header */}
                 <div className="flex items-center justify-between px-5 h-16 border-b border-charcoal-100">
                     <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
                         <img src="/logo.png" alt="Codemistry Logo" className="h-10 w-auto object-contain" />
                     </Link>
-                    <button onClick={() => setMobileOpen(false)} className="p-2 rounded-xl text-charcoal-400 hover:text-charcoal-950 hover:bg-charcoal-50 transition-all">
-                        <X className="w-5 h-5" />
+                    <button onClick={() => setMobileOpen(false)} aria-label="Close navigation menu" className="p-2 rounded-xl text-charcoal-400 hover:text-charcoal-950 hover:bg-charcoal-50 transition-all">
+                        <X className="w-5 h-5" aria-hidden="true" />
                     </button>
                 </div>
 
                 {/* Drawer Nav Links */}
-                <nav className="flex-1 overflow-y-auto px-4 py-8 space-y-2">
+                <nav aria-label="Mobile navigation" className="flex-1 overflow-y-auto px-4 py-8 space-y-2">
                     {navLinks.map((link) => {
                         const Icon = link.icon;
                         const isActive = location.pathname === link.to;
@@ -105,6 +111,7 @@ const Layout = () => {
                                 key={link.to}
                                 to={link.to}
                                 onClick={() => setMobileOpen(false)}
+                                aria-current={isActive ? 'page' : undefined}
                                 className={`flex items-center gap-4 text-base font-medium py-3.5 px-4 rounded-2xl transition-all ${isActive ? 'text-charcoal-950 bg-brand-50 shadow-sm border border-brand-100' : 'text-charcoal-500 hover:text-charcoal-950 hover:bg-charcoal-50 border border-transparent'}`}
                             >
                                 <div className={`p-2 rounded-xl flex items-center justify-center transition-colors ${isActive ? 'bg-white text-brand-600 shadow-sm' : 'bg-charcoal-50 text-charcoal-400 group-hover:bg-white group-hover:text-charcoal-900 group-hover:shadow-sm'}`}>
@@ -120,7 +127,7 @@ const Layout = () => {
             </div>
 
             {/* ──── CONTENT ──── */}
-            <main className="flex-grow">
+            <main id="main-content" className="flex-grow">
                 <Outlet />
             </main>
 
@@ -169,13 +176,13 @@ const Layout = () => {
                                 {/* Social icons */}
                                 <div className="flex gap-2.5">
                                     {[
-                                        { icon: Instagram, href: '#' },
-                                        { icon: Linkedin, href: '#' },
-                                        { icon: Twitter, href: '#' },
-                                        { icon: Mail, href: 'mailto:codemistry359@gmail.com' },
+                                        { icon: Instagram, href: 'https://www.instagram.com/codemistry01?igsh=MWFkeTB2OXg5d3BwaQ==', label: 'Codemistry on Instagram' },
+                                        { icon: Linkedin, href: '#', label: 'Codemistry on LinkedIn' },
+                                        { icon: Twitter, href: '#', label: 'Codemistry on Twitter' },
+                                        { icon: Mail, href: 'mailto:codemistry359@gmail.com', label: 'Email Codemistry' },
                                     ].map((s, i) => (
-                                        <a key={i} href={s.href} className="w-9 h-9 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.06] flex items-center justify-center transition-all duration-300 group">
-                                            <s.icon className="w-4 h-4 text-charcoal-400 group-hover:text-white transition-colors" />
+                                        <a key={i} href={s.href} aria-label={s.label} target={s.href.startsWith('http') ? '_blank' : undefined} rel={s.href.startsWith('http') ? 'noopener noreferrer' : undefined} className="w-11 h-11 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.06] flex items-center justify-center transition-all duration-300 group">
+                                            <s.icon className="w-4 h-4 text-charcoal-400 group-hover:text-white transition-colors" aria-hidden="true" />
                                         </a>
                                     ))}
                                 </div>
@@ -187,7 +194,7 @@ const Layout = () => {
                                     onClick={() => toggleFooterSection('company')}
                                     className="w-full flex items-center justify-between md:cursor-default"
                                 >
-                                    <h4 className="text-xs font-semibold uppercase tracking-[0.15em] text-white/40 md:mb-5">Company</h4>
+                                    <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-white/70 md:mb-5">Company</h3>
                                     <ChevronDown className={`w-4 h-4 text-white/40 md:hidden transition-transform duration-300 ${openFooterSection === 'company' ? 'rotate-180' : ''}`} />
                                 </button>
                                 <div className={`grid transition-all duration-300 md:grid-rows-[1fr] md:mt-0 ${openFooterSection === 'company' ? 'grid-rows-[1fr] mt-4 opacity-100' : 'grid-rows-[0fr] opacity-0 md:opacity-100'}`}>
@@ -216,7 +223,7 @@ const Layout = () => {
                                     onClick={() => toggleFooterSection('services')}
                                     className="w-full flex items-center justify-between md:cursor-default"
                                 >
-                                    <h4 className="text-xs font-semibold uppercase tracking-[0.15em] text-white/40 md:mb-5">Services</h4>
+                                    <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-white/70 md:mb-5">Services</h3>
                                     <ChevronDown className={`w-4 h-4 text-white/40 md:hidden transition-transform duration-300 ${openFooterSection === 'services' ? 'rotate-180' : ''}`} />
                                 </button>
                                 <div className={`grid transition-all duration-300 md:grid-rows-[1fr] md:mt-0 ${openFooterSection === 'services' ? 'grid-rows-[1fr] mt-4 opacity-100' : 'grid-rows-[0fr] opacity-0 md:opacity-100'}`}>
@@ -239,7 +246,7 @@ const Layout = () => {
                                     onClick={() => toggleFooterSection('contact')}
                                     className="w-full flex items-center justify-between md:cursor-default"
                                 >
-                                    <h4 className="text-xs font-semibold uppercase tracking-[0.15em] text-white/40 md:mb-5">Contact</h4>
+                                    <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-white/70 md:mb-5">Contact</h3>
                                     <ChevronDown className={`w-4 h-4 text-white/40 md:hidden transition-transform duration-300 ${openFooterSection === 'contact' ? 'rotate-180' : ''}`} />
                                 </button>
                                 <div className={`grid transition-all duration-300 md:grid-rows-[1fr] md:mt-0 ${openFooterSection === 'contact' ? 'grid-rows-[1fr] mt-4 opacity-100' : 'grid-rows-[0fr] opacity-0 md:opacity-100'}`}>
@@ -264,9 +271,9 @@ const Layout = () => {
                         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-5 flex flex-col sm:flex-row justify-between items-center gap-3">
                             <p className="text-charcoal-500 text-xs">© 2026 Codemistry. All rights reserved.</p>
                             <div className="flex items-center gap-4 text-charcoal-500 text-xs">
-                                <span>Privacy Policy</span>
+                                <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
                                 <span>•</span>
-                                <span>Terms of Service</span>
+                                <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
                                 <span>•</span>
                                 <span>Built with ♥ in India</span>
                             </div>
