@@ -308,7 +308,7 @@ const Home = () => {
                 {/* Background image with slow zoom */}
                 <div className="absolute inset-0">
                     <picture>
-                        <source media="(max-width: 768px)" srcSet="/hero-mobile.webp" />
+                        <source media="(max-width: 768px)" srcSet="/hero-mobile.webp" width="360" height="240" />
                         <img
                             src="/hero.webp"
                             alt="Codemistry team collaborating on software development project"

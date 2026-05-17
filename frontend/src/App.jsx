@@ -5,9 +5,11 @@ import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminLayout from './components/AdminLayout';
 import ScrollToTop from './components/ScrollToTop';
+// Home is eagerly imported: it is the LCP-critical landing page and the
+// dynamic-import waterfall was costing ~300-500ms of mobile LCP.
+import Home from './pages/Home';
 
 // Public pages — lazy loaded for code splitting
-const Home = lazy(() => import('./pages/Home'));
 const Services = lazy(() => import('./pages/Services'));
 const ServiceDetails = lazy(() => import('./pages/ServiceDetails'));
 const About = lazy(() => import('./pages/About'));
