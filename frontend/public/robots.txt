@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /dashboard
+Disallow: /dashboard/
+Disallow: /login
+Disallow: /register
+Disallow: /api/
+Disallow: /sanctum/
+Disallow: /assets/
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /*?*
+
+Sitemap: https://codemistry.in/sitemap.xml

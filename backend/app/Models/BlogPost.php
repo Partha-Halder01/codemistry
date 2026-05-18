@@ -76,6 +76,10 @@ class BlogPost extends Model
     public function getCoverImageUrlAttribute(): ?string
     {
         if (!$this->cover_image_path) return null;
+        // Allow absolute URLs (e.g. Unsplash CDN) to pass through unchanged.
+        if (preg_match('#^https?://#i', $this->cover_image_path)) {
+            return $this->cover_image_path;
+        }
         return Storage::disk('public')->url($this->cover_image_path);
     }
 }

@@ -7,13 +7,18 @@
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    # Route /api/* and /sanctum/* to the Laravel backend entry point
+    # Route /api/*, /sanctum/* and dynamic /sitemap.xml to the Laravel backend
     RewriteRule ^(api|sanctum)(/.*)? backend.php [L,QSA]
+    RewriteRule ^sitemap\.xml$ backend.php [L,QSA]
 
-    # Serve existing files/dirs directly
+    # Serve existing files/dirs directly (but sitemap.xml is forced to Laravel above)
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d
     RewriteRule ^ - [L]
+
+    # Return real 404 for unknown /assets/* requests (Vite-hashed; old hashes shouldn't return SPA HTML)
+    RewriteCond %{REQUEST_URI} ^/assets/
+    RewriteRule ^ - [R=404,L]
 
     # Everything else → React SPA
     RewriteRule . /index.html [L]

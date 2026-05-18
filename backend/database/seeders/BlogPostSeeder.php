@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\BlogPost;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 class BlogPostSeeder extends Seeder
 {
@@ -15,6 +16,7 @@ class BlogPostSeeder extends Seeder
         $posts = [
             [
                 'title'   => 'Web Development Cost in India 2026: A Complete Pricing Guide',
+                'cover_image_path' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=70&fm=webp&auto=format',
                 'excerpt' => 'A transparent breakdown of website development costs in India in 2026 — basic, business, and custom builds, with INR price ranges, GST notes, and what actually drives the bill up.',
                 'meta_title' => 'Web Development Cost in India 2026 — INR Pricing Guide | Codemistry',
                 'meta_description' => 'How much does a website cost in India in 2026? Real INR price ranges for static, business and custom websites — plus what affects the final quote.',
@@ -54,6 +56,7 @@ HTML
             ],
             [
                 'title'   => 'How to Choose a Mobile App Development Company in India',
+                'cover_image_path' => 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&q=70&fm=webp&auto=format',
                 'excerpt' => 'A buyer-side checklist for Indian SMBs and founders evaluating app development companies — what to ask, what to avoid, and how to compare quotes fairly.',
                 'meta_title' => 'How to Choose a Mobile App Development Company in India | 2026 Guide',
                 'meta_description' => 'Hiring an app developer in India? Use this 12-point checklist covering portfolio, INR pricing, post-launch support, IP ownership, GST, and more.',
@@ -96,6 +99,7 @@ HTML
             ],
             [
                 'title'   => 'Building an E-commerce Website in India: Razorpay, UPI & GST Setup',
+                'cover_image_path' => 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&q=70&fm=webp&auto=format',
                 'excerpt' => 'A practical walkthrough of launching an Indian e-commerce store in 2026 — from choosing a stack to wiring up Razorpay, UPI Intent, GSTN invoicing and Shiprocket.',
                 'meta_title' => 'E-commerce Website in India 2026: Razorpay, UPI & GST Guide | Codemistry',
                 'meta_description' => 'Step-by-step guide to building an e-commerce website in India — payment gateway setup (Razorpay, UPI), GST-compliant invoicing, and shipping integrations.',
@@ -140,6 +144,7 @@ HTML
             ],
             [
                 'title'   => 'Custom Software for Small Businesses in India: Build vs. Buy',
+                'cover_image_path' => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=70&fm=webp&auto=format',
                 'excerpt' => 'When does it make sense for an Indian SMB to invest in custom software vs. paying monthly for SaaS? A frank comparison with realistic 2026 numbers.',
                 'meta_title' => 'Custom Software for Indian SMBs: Build vs Buy in 2026 | Codemistry',
                 'meta_description' => 'Should your Indian small business build custom software or use SaaS? A no-fluff comparison with INR costs, ROI math and case studies.',
@@ -186,6 +191,7 @@ HTML
             ],
             [
                 'title'   => 'AI Integration for Indian Startups: Use Cases & Costs in 2026',
+                'cover_image_path' => 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=70&fm=webp&auto=format',
                 'excerpt' => 'Practical AI use cases Indian founders are actually shipping in 2026 — chatbots, document automation, lead scoring — with real INR cost ranges and ROI examples.',
                 'meta_title' => 'AI Integration for Indian Startups in 2026: Use Cases & Costs',
                 'meta_description' => 'Real AI use cases for Indian businesses in 2026 — multilingual chatbots, GST document parsing, lead scoring — with INR cost ranges and ROI examples.',
@@ -248,7 +254,9 @@ HTML
         ];
 
         foreach ($posts as $row) {
-            $slug = BlogPost::makeUniqueSlug($row['title']);
+            // Stable slug from title — so re-running the seeder updates the same
+            // row instead of creating "-2", "-3" duplicates.
+            $slug = Str::slug($row['title']);
             BlogPost::updateOrCreate(
                 ['slug' => $slug],
                 array_merge($row, [
