@@ -55,7 +55,7 @@ const Contact = () => {
                             <div className="space-y-5">
                                 {[
                                     { icon: Mail, label: 'Email Us', value: 'codemistry359@gmail.com', href: 'mailto:codemistry359@gmail.com' },
-                                    { icon: Phone, label: 'Call Us', value: '8910710136', href: 'tel:8910710136' },
+                                    { icon: Phone, label: 'Call Us', value: '8967739189', href: 'tel:8967739189' },
                                 ].map((item, i) => {
                                     const Icon = item.icon;
                                     return (
