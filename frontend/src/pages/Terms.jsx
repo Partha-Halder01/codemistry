@@ -97,7 +97,7 @@ const Terms = () => (
                         For questions about these Terms, contact:<br />
                         <strong>Codemistry</strong><br />
                         Email: <a href="mailto:codemistry359@gmail.com" className="text-brand-600 underline underline-offset-2">codemistry359@gmail.com</a><br />
-                        Phone: <a href="tel:+918967739189" className="text-brand-600 underline underline-offset-2">+91 89677 39189</a>
+                        Phone: <a href="tel:+918910710136" className="text-brand-600 underline underline-offset-2">+91 89107 10136</a>
                     </p>
                 </section>
             </div>

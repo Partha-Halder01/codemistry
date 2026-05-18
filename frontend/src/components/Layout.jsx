@@ -275,7 +275,7 @@ const Layout = () => {
                                         </li>
                                         <li className="flex items-start gap-3">
                                             <Phone className="w-4 h-4 text-charcoal-500 mt-0.5 shrink-0" />
-                                            <a href="tel:+918967739189" className="text-sm text-charcoal-400 hover:text-white transition-colors">+91 89677 39189</a>
+                                            <a href="tel:+918910710136" className="text-sm text-charcoal-400 hover:text-white transition-colors">+91 89107 10136</a>
                                         </li>
                                         
                                     </ul>
